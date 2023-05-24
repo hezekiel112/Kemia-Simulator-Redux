@@ -1,0 +1,5 @@
+Finir l'environnement
+Finir les systemes multijoueur
+Faire le menu, parametres
+Faire le systeme d'IA qui se deplace dans l'environnement
+Faire les systemes des class (cuisinier, serveur, client)
