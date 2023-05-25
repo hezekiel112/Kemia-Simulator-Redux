@@ -801,7 +801,8 @@ PlayerSettings:
   webGLMemoryGeometricGrowthStep: 0.2
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    Standalone: ATMOSPHERIC_HEIGHT_FOG
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
