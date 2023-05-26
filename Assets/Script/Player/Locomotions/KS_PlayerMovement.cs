@@ -34,23 +34,9 @@ public class KS_PlayerMovement : MonoBehaviour
     
     public float GetRunSpeed() { return WalkSpeed * RunIncrementer; }
 
-    public bool IsRunning()
-    {
-        return Input.GetKeyDown(KeyCode.LeftShift)
-|| Input.GetKeyDown(KeyCode.RightShift);
-    }
+    public bool IsRunning() { return Input.GetKeyDown(KeyCode.LeftShift) 
+            ||  Input.GetKeyDown(KeyCode.RightShift);}
 
-
-    public bool IsWalking()
-    {
-        if (IsRunning())
-            return true;
-
-        if (m_controller.velocity.x > .5f || m_controller.velocity.z > .5f)
-            return true;
-
-        return false;
-    }
 
     private void Update()
     {
@@ -68,9 +54,11 @@ public class KS_PlayerMovement : MonoBehaviour
     {
         m_animator.SetBool("Idle", m_controller.velocity.magnitude <= 0);
 
-        if (IsWalking())
+        if (Velocity != null)
         {
             m_animator.SetBool("Forward", m_controller.velocity.x > .5f || m_controller.velocity.z > .5f);
+            m_animator.SetBool("Forward", moveInputs.x >= 1 || moveInputs.z >= 1);
+            m_animator.SetBool("Backward", moveInputs.x < 1);
         }
     }
 }
