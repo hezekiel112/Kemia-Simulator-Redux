@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: eeabe133b2f021c4c8c145605ca37880
 ModelImporter:
-  serializedVersion: 19301
+  serializedVersion: 22200
   internalIDToNameTable:
   - first:
       1: 100000
@@ -356,14 +356,13 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: Motion
-    rigImportErrors: 
+    rigImportErrors: "Copied Avatar Rig Configuration mis-match. Transform hierarchy
+      does not match:\n\tTransform 'Hips' for human bone 'Hips' not found\n"
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'B_Spine' has translation animation that
-      will be discarded.\n"
+    animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -431,23 +430,30 @@ ModelImporter:
     importBlendShapes: 0
     importCameras: 0
     importLights: 0
+    nodeNameCollisionStrategy: 0
     fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 0
+    bakeAxisConversion: 0
     preserveHierarchy: 0
     skinWeightsMode: 0
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
+    optimizeBones: 1
     meshOptimizationFlags: 0
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 0
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 2
@@ -882,7 +888,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Motion
       parentName: 
-      position: {x: -0.000000009925849, y: 0, z: -0.0017328986}
+      position: {x: -0.0000000099258495, y: 0, z: -0.0017328988}
       rotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
       scale: {x: 1, y: 1, z: 1}
     - name: B_Prop
@@ -907,7 +913,7 @@ ModelImporter:
       scale: {x: 1.0000002, y: 1.0000002, z: 1}
     - name: B_L_Foot
       parentName: 
-      position: {x: -0.5595046, y: -0.000000009536743, z: -0.000000028610229}
+      position: {x: -0.5595047, y: -0.000000009536743, z: -0.000000028610229}
       rotation: {x: 0.00000047264385, y: -0.000000048054105, z: -0.049979202, w: 0.99875027}
       scale: {x: 0.9999998, y: 0.9999997, z: 1}
     - name: B_L_Toe0
@@ -917,7 +923,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: B_R_Thigh
       parentName: 
-      position: {x: -0, y: -0.00000015109775, z: -0.15105617}
+      position: {x: -0, y: -0.00000015109777, z: -0.15105617}
       rotation: {x: -0.04997973, y: 0.99875027, z: 0.0000016922992, w: -0.00000012497962}
       scale: {x: 0.9999999, y: 1, z: 1}
     - name: B_R_Calf
@@ -942,7 +948,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: B_Spine1
       parentName: 
-      position: {x: -0.21523039, y: -0.00023167042, z: -4.2162246e-10}
+      position: {x: -0.2152304, y: -0.00023167043, z: -4.216225e-10}
       rotation: {x: -5.641104e-15, y: 0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: B_Neck
@@ -957,7 +963,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: B_L_Clavicle
       parentName: 
-      position: {x: -0.29094252, y: -0.00000010475516, z: 0.057713844}
+      position: {x: -0.29094252, y: -0.00000010475516, z: 0.057713848}
       rotation: {x: 0.70710677, y: 0.00028154097, z: -0.70710677, w: 0.00028154097}
       scale: {x: 1, y: 1, z: 1}
     - name: B_L_UpperArm
@@ -1002,12 +1008,12 @@ ModelImporter:
       scale: {x: 1, y: 0.99999976, z: 1.0000001}
     - name: B_L_Finger32
       parentName: 
-      position: {x: -0.07370765, y: 0.00000020980835, z: 0.000000038146972}
+      position: {x: -0.073707655, y: 0.00000020980835, z: 0.000000038146972}
       rotation: {x: -0.00000022578263, y: 0.0000002177516, z: -0.11640201, w: 0.9932022}
       scale: {x: 0.99999994, y: 0.99999976, z: 1.0000002}
     - name: B_L_Finger2
       parentName: 
-      position: {x: -0.17157651, y: -0.03496109, z: -0.019497441}
+      position: {x: -0.17157653, y: -0.03496109, z: -0.019497441}
       rotation: {x: -0.00039787736, y: -0.016104408, z: 0.028850118, w: 0.99945396}
       scale: {x: 1.0000001, y: 1.0000002, z: 0.99999994}
     - name: B_L_Finger21
@@ -1022,7 +1028,7 @@ ModelImporter:
       scale: {x: 0.9999999, y: 0.99999994, z: 1.0000001}
     - name: B_L_Finger4
       parentName: 
-      position: {x: -0.17157638, y: -0.03489662, z: 0.061353844}
+      position: {x: -0.17157638, y: -0.03489662, z: 0.061353847}
       rotation: {x: -0.00039930595, y: -0.016105143, z: 0.028851269, w: 0.99945396}
       scale: {x: 1.0000002, y: 1.0000002, z: 0.99999994}
     - name: B_L_Finger41
@@ -1032,12 +1038,12 @@ ModelImporter:
       scale: {x: 0.99999976, y: 0.99999994, z: 0.99999964}
     - name: B_L_Finger42
       parentName: 
-      position: {x: -0.061423104, y: -0.00000020980835, z: -0.0000002002716}
+      position: {x: -0.061423108, y: -0.00000020980835, z: -0.0000002002716}
       rotation: {x: 0.000000010640656, y: 0.0000002988159, z: -0.1164018, w: 0.9932022}
       scale: {x: 1, y: 1.0000001, z: 0.99999994}
     - name: B_L_Finger1
       parentName: 
-      position: {x: -0.1715763, y: -0.034993134, z: -0.059923034}
+      position: {x: -0.1715763, y: -0.034993134, z: -0.059923038}
       rotation: {x: -0.00039785253, y: -0.016104842, z: 0.028850203, w: 0.9994539}
       scale: {x: 1.0000004, y: 1.0000002, z: 0.99999976}
     - name: B_L_Finger11
@@ -1052,7 +1058,7 @@ ModelImporter:
       scale: {x: 0.99999994, y: 1, z: 0.99999994}
     - name: B_R_Clavicle
       parentName: 
-      position: {x: -0.29094252, y: 0.000000105053175, z: -0.057713855}
+      position: {x: -0.29094252, y: 0.00000010505318, z: -0.057713855}
       rotation: {x: 0.70710677, y: 0.00028147915, z: 0.70710677, w: -0.00028147915}
       scale: {x: 1, y: 1, z: 1}
     - name: B_R_UpperArm
@@ -1082,12 +1088,12 @@ ModelImporter:
       scale: {x: 0.9999999, y: 1.0000001, z: 1.0000001}
     - name: B_R_Finger02
       parentName: 
-      position: {x: -0.061423104, y: 0.000000057220458, z: 0.0000002670288}
+      position: {x: -0.061423108, y: 0.000000057220458, z: 0.0000002670288}
       rotation: {x: 0.000000033356088, y: -0.00000013143601, z: -0.116402015, w: 0.9932022}
       scale: {x: 1.0000004, y: 1.0000004, z: 1.0000001}
     - name: B_R_Finger3
       parentName: 
-      position: {x: -0.17157677, y: -0.03492866, z: -0.020928305}
+      position: {x: -0.17157677, y: -0.034928665, z: -0.020928307}
       rotation: {x: 0.00039795888, y: 0.016104018, z: 0.028848905, w: 0.999454}
       scale: {x: 0.9999999, y: 1.0000002, z: 1.0000002}
     - name: B_R_Finger31
@@ -1117,17 +1123,17 @@ ModelImporter:
       scale: {x: 0.99999994, y: 0.99999964, z: 0.9999999}
     - name: B_R_Finger4
       parentName: 
-      position: {x: -0.17157677, y: -0.03489704, z: -0.061354093}
+      position: {x: -0.17157677, y: -0.03489704, z: -0.061354097}
       rotation: {x: 0.00039836127, y: 0.016102895, z: 0.02884862, w: 0.9994541}
       scale: {x: 1.0000002, y: 1.0000011, z: 1.0000011}
     - name: B_R_Finger41
       parentName: 
-      position: {x: -0.06142265, y: 0.000000114440915, z: 0.00000031948088}
+      position: {x: -0.061422653, y: 0.000000114440915, z: 0.00000031948088}
       rotation: {x: 0.0000001165381, y: 0.000002377069, z: -0.037769943, w: 0.99928653}
       scale: {x: 1.0000004, y: 1, z: 1.0000002}
     - name: B_R_Finger42
       parentName: 
-      position: {x: -0.061423562, y: 0.0000001335144, z: -0.000000095367426}
+      position: {x: -0.061423566, y: 0.0000001335144, z: -0.000000095367426}
       rotation: {x: 0.000000010694469, y: -0.000000068767555, z: -0.11640201, w: 0.9932022}
       scale: {x: 0.99999994, y: 1, z: 0.9999999}
     - name: B_R_Finger1
@@ -1163,6 +1169,9 @@ ModelImporter:
   animationType: 3
   humanoidOversampling: 1
   avatarSetup: 2
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  importBlendShapeDeformPercent: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 
