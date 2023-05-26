@@ -71,7 +71,6 @@ public class KS_PlayerMovement : MonoBehaviour
         if (IsWalking())
         {
             m_animator.SetBool("Forward", m_controller.velocity.x > .5f || m_controller.velocity.z > .5f);
-            m_animator.SetBool("Backward", m_controller.velocity.x <= -.1f || m_controller.velocity.z <= -.1f);
         }
     }
 }
