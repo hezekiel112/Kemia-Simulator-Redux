@@ -10,11 +10,11 @@ Material:
   m_Name: PolygonShops_Mat_Tile_03
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_Parent: {fileID: 2100000, guid: 38f4425d2d9d4d145981a40f93bcddbc, type: 2}
-  m_ModifiedSerializedProperties: 18
+  m_ModifiedSerializedProperties: 22
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 2000
   stringTagMap:
