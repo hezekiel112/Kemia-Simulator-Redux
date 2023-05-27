@@ -5,14 +5,20 @@ using UnityEngine;
 public class KS_LocomotionSFX : MonoBehaviour
 {
     [SerializeField] AudioSource m_audioSource;
+    [SerializeField, Tooltip("Selectionner cela si ce script est uniquement pour le joueur")] bool isForPlayer;
     [SerializeField] FirstPersonController player;
 
 
     public void PlaySound(AudioClip clip)
     {
-        if (player.rb.velocity.x > 0 || player.rb.velocity.z > 0)
+        if (isForPlayer)
         {
-            m_audioSource.PlayOneShot(clip);
+            if (player.rb.velocity.x > 0 || player.rb.velocity.z > 0)
+            {
+                m_audioSource.PlayOneShot(clip);
+            }
         }
+
+        m_audioSource.PlayOneShot(clip);
     }
 }
