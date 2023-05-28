@@ -1,36 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class KS_InterfaceOrdi : MonoBehaviour
 {
-    public Transform ordi;
-    public LayerMask collisionLayers;
-    public float potionRadius;
+    public Transform Ordi;
+    public float OrdiRadius;
     public bool colision;
-    public GameObject interfaceUi;
+    public LayerMask collisionLayers;
+    public GameObject UiOrdi;
+    public Transform Joueur;
+    public Transform Snack;
 
+    
     void FixedUpdate()
     {
-        colision = Physics2D.OverlapCircle(ordi.position, potionRadius, collisionLayers);
+        colision = Physics.CheckSphere(Ordi.position, OrdiRadius, collisionLayers);
     }
+
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(ordi.position, potionRadius);
+        Gizmos.DrawWireSphere(Ordi.position, OrdiRadius);
     }
 
     void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.E) && colision)
         {
-            //Lorsque Player serai créé stopé c mouvement ici (a ne surtout pas oublier)
-            interfaceUi.SetActive(true);
-
+            Cursor.lockState = CursorLockMode.None;
+            UiOrdi.SetActive(true);
         }
+    }
 
+    public void sortirButton()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        UiOrdi.SetActive(false);
+    }
+
+    public void retourAuSnack()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Joueur.position = Snack.position;
+        UiOrdi.SetActive(false);
     }
 
 }

@@ -4,32 +4,33 @@ using UnityEngine;
 
 public class KS_tpAlaChambre : MonoBehaviour
 {
-    public Transform player;
     public Transform voiture;
-    public LayerMask collisionLayers;
     public float voitureRadius;
     public bool colision;
-    [SerializeField] Transform Chambre;
+    public LayerMask collisionLayers;
+    public Transform Chambre;
+    public Transform Joueur;
+
 
     void FixedUpdate()
     {
-        colision = Physics2D.OverlapCircle(voiture.position, voitureRadius, collisionLayers);
+        colision = Physics.CheckSphere(voiture.position, voitureRadius, collisionLayers);
     }
 
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(voiture.position, voitureRadius);
     }
 
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.E) && colision)
+        if(Input.GetKeyDown(KeyCode.E) && colision)
         {
-            player.transform.position = Chambre.position;
+            Joueur.position = Chambre.position;
         }
+
 
     }
 }
