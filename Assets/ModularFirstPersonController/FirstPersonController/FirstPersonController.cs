@@ -128,8 +128,11 @@ public class FirstPersonController : MonoBehaviour
 
     #endregion
 
+    private Animator animator;
+
     private void Awake()
     {
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
 
         crosshairObject = GetComponentInChildren<Image>();
@@ -176,6 +179,9 @@ public class FirstPersonController : MonoBehaviour
 
     private void Update()
     {
+        animator.SetFloat("Horizontal", rb.velocity.x);
+        animator.SetFloat("Vertical", rb.velocity.z);
+
         #region Camera
 
         // Control camera movement

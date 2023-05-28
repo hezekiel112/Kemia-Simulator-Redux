@@ -18,7 +18,9 @@ public class KS_LocomotionSFX : MonoBehaviour
                 m_audioSource.PlayOneShot(clip);
             }
         }
+        else
+            m_audioSource.PlayOneShot(clip);
 
-        m_audioSource.PlayOneShot(clip);
+        print("played");
     }
 }

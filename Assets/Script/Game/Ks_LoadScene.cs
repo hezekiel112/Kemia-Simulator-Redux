@@ -1,10 +1,10 @@
+
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class Ks_LoadScene<SCENE> : SceneManager
+public class Ks_LoadScene : MonoBehaviour
 {
-    public void Load(SCENE scene)
+    public void Load(int scene)
     {
-
+        Ks_LoadingScreenBehavior.Instance.LoadSceneAsync(scene);
     }
 }

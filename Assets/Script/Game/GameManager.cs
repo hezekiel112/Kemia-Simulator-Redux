@@ -8,11 +8,12 @@ public class GameManager : MonoBehaviour
 
     public string VersionID;
 
-    [Foldout("Réfs Scène Menu"), SerializeField] private TextMeshProUGUI VersionText;
+    [Foldout("Refs Scene Menu"), SerializeField] private TextMeshProUGUI VersionText;
 
     private void Start()
     {
         InitGame();
+        DontDestroyOnLoad(this);
     }
 
     private void InitGame()

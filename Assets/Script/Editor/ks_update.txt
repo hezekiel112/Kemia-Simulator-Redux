@@ -1,5 +1,11 @@
 Finir l'environnement
 Finir les systemes multijoueur
-Faire le menu, parametres
+Faire les parametres
 Faire le systeme d'IA qui se deplace dans l'environnement
 Faire les systemes des class (cuisinier, serveur, client)
+Finir DevMod (Execution des programmes + scripts, liaison du build vers le serveur + vérification de l'ID du build (vérification par token ?) )
+Faire le système de pourboir
+Intéraction avec l'environnement
+Afficher limite de la map
+Atteindre 70fps constant dans l'éditeur unity
+Ajouter les animations (IA)
