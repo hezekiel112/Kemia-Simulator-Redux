@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class KS_LocomotionSFX : MonoBehaviour
@@ -20,7 +21,5 @@ public class KS_LocomotionSFX : MonoBehaviour
         }
         else
             m_audioSource.PlayOneShot(clip);
-
-        print("played");
     }
 }
