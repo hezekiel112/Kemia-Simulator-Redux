@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571346, b: 0.30692208, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -13905,7 +13905,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: f
           m_BoolArgument: 0
@@ -18182,13 +18182,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 181813833a29d434888c414482a76393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ordi: {fileID: 5640904647360020555}
+  Ordi: {fileID: 0}
+  OrdiRadius: 0
+  colision: 0
   collisionLayers:
     serializedVersion: 2
     m_Bits: 8
-  potionRadius: 1.5
-  colision: 0
-  interfaceUi: {fileID: 0}
+  UiOrdi: {fileID: 0}
+  Joueur: {fileID: 0}
+  Snack: {fileID: 0}
 --- !u!4 &5640904647360020555 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4020407573759488, guid: f2fa2992c94ba4549b5c5362226c3eef,
