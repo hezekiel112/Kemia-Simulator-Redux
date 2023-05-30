@@ -6,6 +6,7 @@ using UnityEngine;
 public class KS_InterfaceOrdi : MonoBehaviour
 {
     public Transform Ordi;
+    public GameObject ordi;
     public float OrdiRadius;
     public bool colision;
     public LayerMask collisionLayers;
@@ -22,8 +23,16 @@ public class KS_InterfaceOrdi : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(Ordi.position, OrdiRadius);
+        if (ordi != null)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(Ordi.position, OrdiRadius);
+            return;
+        }
+        else
+        {
+            Debug.Log("Il manque {0} !");
+        }
     }
 
     void Update()
