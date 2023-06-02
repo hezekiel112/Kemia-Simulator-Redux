@@ -14,9 +14,13 @@ public class KS_LocomotionSFX : MonoBehaviour
     {
         if (isForPlayer)
         {
-            if (player.rb.velocity.x > 0 || player.rb.velocity.z > 0)
+            if (player.IsMoving())
             {
-                m_audioSource.PlayOneShot(clip);
+                if (player.characterController.velocity.x > 0 || player.characterController.velocity.z > 0)
+                {
+                    m_audioSource.PlayOneShot(clip);
+                }
+                return;
             }
         }
         else

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using System;
 
 public class KS_InterfaceOrdi : MonoBehaviour
 {
@@ -22,8 +23,19 @@ public class KS_InterfaceOrdi : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(Ordi.position, OrdiRadius);
+        // J'ai ajouté une condition car ça spam la console d'erreur vu que tu utilisé une variable
+        // Qui n'était pas réferencé
+
+        if (Ordi != null)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(Ordi.position, OrdiRadius);
+            return;
+        }
+        else
+        {
+            throw new Exception("Il manque {0} !");
+        }
     }
 
     void Update()

@@ -11,9 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/!Ks_EnzoMap.unity
     guid: 84549cc7ffc5eda488d9a40e5fba2a51
-  - enabled: 1
-    path: Assets/Scenes/!Ks_EnzoMapHorsLine.unity
-    guid: d4f06eae35003824993275abf163231f
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 86030edc93108a342b3d0383fe1cc61a,
       type: 2}

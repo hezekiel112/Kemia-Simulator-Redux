@@ -32,7 +32,7 @@ QualitySettings:
     lodBias: 0.4
     maximumLODLevel: 0
     enableLODCrossFade: 0
-    streamingMipmapsActive: 1
+    streamingMipmapsActive: 0
     streamingMipmapsAddAllCameras: 1
     streamingMipmapsMemoryBudget: 512
     streamingMipmapsRenderersPerFrame: 512
@@ -58,18 +58,5 @@ QualitySettings:
   m_TextureMipmapLimitGroupNames: []
   m_PerPlatformDefaultQuality:
     Android: 0
-    CloudRendering: 0
-    GameCoreScarlett: 0
-    GameCoreXboxOne: 0
-    Lumin: 0
-    Nintendo Switch: 0
-    PS4: 0
-    PS5: 0
     Server: 0
-    Stadia: 0
     Standalone: 0
-    WebGL: 0
-    Windows Store Apps: 0
-    XboxOne: 0
-    iPhone: 0
-    tvOS: 0
