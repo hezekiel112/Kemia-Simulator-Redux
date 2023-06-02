@@ -5,6 +5,7 @@ using UnityEngine;
 public class KS_tpAlaChambre : MonoBehaviour
 {
     public Transform voiture;
+    public GameObject Voiture;
     public float voitureRadius;
     public bool colision;
     public LayerMask collisionLayers;
@@ -20,8 +21,17 @@ public class KS_tpAlaChambre : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(voiture.position, voitureRadius);
+        if (Voiture != null)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(voiture.position, voitureRadius);
+            return;
+        }
+        else
+        {
+            Debug.Log("Il manque {0} !");
+        }
+       
     }
 
     void Update()
