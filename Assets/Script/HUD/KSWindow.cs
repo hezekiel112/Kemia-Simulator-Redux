@@ -35,11 +35,19 @@ namespace KemiaSimulatorCore.Script.HUD
             _onNoButton.Invoke();
         }
 
+        public void OnExitButtonClicked(){
+            _onExitButton.Invoke();
+        }
+        
         public void HideWindow(){
             _isWindowOpen = false;
-            gameObject.SetActive(false);
+            Invoke(nameof(HideWindowDelayed), .4f);
         }
 
+        private void HideWindowDelayed(){
+            gameObject.SetActive(false);
+        }
+        
         private void Start(){
             ShowWindow();
         }
@@ -48,7 +56,7 @@ namespace KemiaSimulatorCore.Script.HUD
             if (!_exitButton || !_okButton || !_noButton || !_titleText || !_contentText)
                 throw new NullReferenceException($"{this} : missconfig!");
             
-            _exitButton.onClick.AddListener(HideWindow);
+            _exitButton.onClick.AddListener(OnExitButtonClicked);
             _okButton.onClick.AddListener(OnOkButtonClicked);
             _noButton.onClick.AddListener(OnNoButtonClicked);
             
@@ -63,6 +71,7 @@ namespace KemiaSimulatorCore.Script.HUD
     public interface IWindowEvent{
         public void OnOkButtonClicked();
         public void OnNoButtonClicked();
+        public void OnExitButtonClicked();
         
         public void HideWindow();
         public void ShowWindow();

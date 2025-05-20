@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c0cd0d80f02407c888d16b275a093b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneScope: 2
+  _sceneScope: 0
   _uiLoader: {fileID: 966834223}
 --- !u!1 &193808718
 GameObject:
@@ -534,8 +534,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4343724b7667f9b4ebe2db25a17264af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _windowPrefab: {fileID: 0}
-  _canvas: {fileID: 0}
+  _windowPrefab: {fileID: 2976740101895971466, guid: dac8cf8c8ebd2a449b52c5b8c2a66325,
+    type: 3}
+  _canvas: {fileID: 409546338}
 --- !u!1 &1111538741
 GameObject:
   m_ObjectHideFlags: 0

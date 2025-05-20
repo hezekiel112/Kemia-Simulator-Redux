@@ -41,12 +41,9 @@ namespace KemiaSimulatorCore.Script.HUD
         }
         
         public void InitializeNewWindow(string title, string content){
-            var window = Instantiate(_windowPrefab);
-            
-            if (window)
-                window.transform.SetParent(_canvas.transform);
+            var window = Instantiate(_windowPrefab, _canvas.transform);
 
-            var window_component = window.GetComponent<KSWindow>();
+            var window_component = window.GetComponentInChildren<KSWindow>();
             
             window_component.SetTitle(title);
             window_component.SetContent(content);
