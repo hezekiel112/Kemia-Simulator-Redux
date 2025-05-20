@@ -17,7 +17,8 @@ namespace KemiaSimulatorCore.Script.HUD{
         }
         
         private void Sign(){
-            KSAuthentificationHandler.Instance.SignInAnonymously();
+            KSAuthentificationHandler.Instance.
+                SignInWithLogin(GetUsernameFieldContent(), GetPasswordFieldContent());
         }
 
         private void Register(){

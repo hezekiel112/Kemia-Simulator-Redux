@@ -840,8 +840,8 @@ MonoBehaviour:
   _noButton: {fileID: 2758082599134588563}
   _titleText: {fileID: 2370491248866788123}
   _contentText: {fileID: 6862628856206763707}
-  _usernameInputField: {fileID: 0}
-  _passwordInputField: {fileID: 0}
+  _usernameInputField: {fileID: 9042845675433139907}
+  _passwordInputField: {fileID: 8426164411809032159}
 --- !u!82 &2916191659173402755
 AudioSource:
   m_ObjectHideFlags: 0

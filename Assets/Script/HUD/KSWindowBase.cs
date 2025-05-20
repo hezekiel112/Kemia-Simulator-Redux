@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace KemiaSimulatorCore.Script.HUD{
     /// <summary>
@@ -12,7 +13,9 @@ namespace KemiaSimulatorCore.Script.HUD{
     /// </summary>
     public abstract class KSWindowBase : MonoBehaviour, IWindowEvent{
         [Header("Window Infos :")] [SerializeField]
-        private Enums.EWindowType _windowType;
+        private string _windowId;
+        
+        [SerializeField] private Enums.EWindowType _windowType;
         
         [SerializeField]  private Button _exitButton;
 
@@ -25,6 +28,11 @@ namespace KemiaSimulatorCore.Script.HUD{
 
         private bool _isWindowOpen = false;
 
+        public string WindowID
+        {
+            get => _windowId;
+        }
+        
         public bool IsWindowOpen
         {
             get => _isWindowOpen;
@@ -33,6 +41,12 @@ namespace KemiaSimulatorCore.Script.HUD{
         public Enums.EWindowType WindowType
         {
             get => _windowType;
+        }
+
+        [Button("Générer ID Unique")]
+        private void GenId(){
+            string new_id = _windowId + Random.Range(0, 550);
+            _windowId = new_id;
         }
         
         private void OnDisable(){
@@ -73,6 +87,7 @@ namespace KemiaSimulatorCore.Script.HUD{
         
         private void Start(){
             ShowWindow();
+            KSWindowRegistry.Instance.AddWindowToRegistry(_windowId, this);
         }
 
         protected delegate void WhenOkButtonClicked();

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using KemiaSimulatorCore.Script.Helper;
 using KemiaSimulatorCore.Script.HUD;
 using KemiaSimulatorCore.Script.Statics;
 using Unity.Services.Authentication;
@@ -45,9 +46,46 @@ namespace KemiaSimulatorCore.Script.Networking.Authentication
                 AuthenticationService.Instance.SignInFailed -= OnSignInFailed;
             }
         }
-
+        
+        /// <summary>
+        /// Inscription d'un joueur
+        /// </summary>
+        /// <param name="username">Le pseudo du joueur</param>
+        /// <param name="password">Le mot de passe du joueur</param>
         public async void SignInWithLogin(string username, string password){
-            
+            if (IsServerReady())
+            { 
+                /*
+                 // ce player à déjà un compte existant — inutile de l'authentifier manuellement.
+                if (AuthenticationService.Instance.SessionTokenExists)
+                {
+                    SignInAnonymously();
+
+                    return;
+                }*/
+                
+                if (username == string.Empty)
+                {
+                    username = RandomPlayerName.GetRandomPlayerName();
+                }
+
+                try
+                {
+                    await AuthenticationService.Instance.SignUpWithUsernamePasswordAsync(username, password);
+                }
+                catch (AuthenticationException ex)
+                {
+                    // Compare error code to AuthenticationErrorCodes
+                    // Notify the player with the proper error message
+                    Debug.LogException(ex);
+                }
+                catch (RequestFailedException ex)
+                {
+                    // Compare error code to CommonErrorCodes
+                    // Notify the player with the proper error message
+                    Debug.LogException(ex);
+                }
+            }
         }
 
         public bool IsServerReady(){
