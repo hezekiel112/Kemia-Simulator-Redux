@@ -16,6 +16,7 @@ namespace KemiaSimulatorCore.Script.Game.Manager{
         private void Awake(){
             GameVersion = KSRuntime.GetNewGameVersion();
             this.kslog($"GameVersion OK ({GameVersion.BuildVersion})");
+            DontDestroyOnLoad(this);
         }
     }
 }

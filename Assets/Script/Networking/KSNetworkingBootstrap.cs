@@ -11,6 +11,10 @@ namespace KemiaSimulatorCore.Script.Networking
     /// </summary>
     public class KSNetworkingBootstrap : MonoBehaviour
     {
+        private void Awake(){
+            DontDestroyOnLoad(this);
+        }
+
         private async void Start(){
             try
             {

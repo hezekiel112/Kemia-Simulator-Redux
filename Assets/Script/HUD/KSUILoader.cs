@@ -8,9 +8,9 @@ namespace KemiaSimulatorCore.Script.HUD{
     public class KSUILoader : MonoBehaviour, IUILoader{
 
         public void Load(int scene_id){
-            if (!SceneManager.GetSceneAt(scene_id).isLoaded)
+            if (!SceneManager.GetSceneByBuildIndex(scene_id).isLoaded)
             {
-                SceneManager.LoadScene(scene_id);
+                SceneManager.LoadScene(scene_id, LoadSceneMode.Additive);
             }
         }
 
