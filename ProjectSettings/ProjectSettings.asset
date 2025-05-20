@@ -949,10 +949,10 @@ PlayerSettings:
   apiCompatibilityLevel: 3
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 2ff57615-03d6-4ab8-9889-109d9914f917
+  cloudProjectId: f67c5a30-ca17-4b0f-847d-8055841e88f6
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Kemia Simulator
+  projectName: kemia_simulator
   organizationId: mindred-studio-as-publisher
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
