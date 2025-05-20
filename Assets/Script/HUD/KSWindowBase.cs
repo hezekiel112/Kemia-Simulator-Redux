@@ -17,8 +17,6 @@ namespace KemiaSimulatorCore.Script.HUD{
 
         [SerializeField] private Button _okButton, _noButton;
         [SerializeField] private TextMeshProUGUI _titleText, _contentText;
-
-        [SerializeField] private UnityEvent _onOkButton, _onNoButton, _onExitButton;
         
         private bool _isWindowOpen = false;
 
@@ -37,18 +35,18 @@ namespace KemiaSimulatorCore.Script.HUD{
             _exitButton.onClick.RemoveAllListeners();
         }
         
-        public virtual void OnOkButtonClicked(){
-            _onOkButton.Invoke();
+        public void OnOkButtonClicked(){
+            OnOkButtonCallback?.Invoke();
         }
 
         public virtual void OnNoButtonClicked(){
-            _onNoButton.Invoke();
+            OnNoButtonCallback?.Invoke();
         }
         
         public void SendCallback(string callback) {}
         
         public virtual void OnExitButtonClicked(){
-            _onExitButton.Invoke();
+            OnExitButtonCallback?.Invoke();
         }
         
         public void HideWindow(){
@@ -64,6 +62,17 @@ namespace KemiaSimulatorCore.Script.HUD{
             ShowWindow();
         }
 
+        protected delegate void WhenOkButtonClicked();
+        protected WhenOkButtonClicked OnOkButtonCallback;
+        
+        protected delegate void WhenNoButtonClicked();
+        protected WhenNoButtonClicked OnNoButtonCallback;
+        
+        protected delegate void WhenExitButtonClicked();
+        protected WhenExitButtonClicked OnExitButtonCallback;
+        
+        protected virtual void OnWindowOpen() {}
+        
         public void ShowWindow(){
             if (!_exitButton || !_okButton || !_noButton || !_titleText || !_contentText)
                 throw new NullReferenceException($"{this} : missconfig!");
@@ -74,6 +83,8 @@ namespace KemiaSimulatorCore.Script.HUD{
             
             gameObject.SetActive(true);
             _isWindowOpen = true;
+            
+            OnWindowOpen();
         }
         
         public void SetTitle(string title) => _titleText.text = title;

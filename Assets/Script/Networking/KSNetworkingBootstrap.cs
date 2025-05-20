@@ -24,7 +24,7 @@ namespace KemiaSimulatorCore.Script.Networking
             DontDestroyOnLoad(this);
         }
 
-        public async Task TryConnect(){
+        private async void Start(){
             try
             {
                 await StartUnityServices();
