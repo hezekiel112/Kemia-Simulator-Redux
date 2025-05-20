@@ -14,3 +14,10 @@ Cette version Redux ajoutera alors au fork original :
  - Un système de voice in-game (Vivox)
  - Une intégration à la bebz-radio (Sans Doûte)
  - Une intégration au serveur de salon (Pourquoi Pas)
+
+ ## Road Map
+ Voici les fonctionnalités que je prévois de développer.
+ À savoir que cette liste n'est pas exhaustive.
+ 
+ - Finir et amélioré la map de base (EnzoMap)
+ - Implementé le système de Vincent (Ordi.KS)
