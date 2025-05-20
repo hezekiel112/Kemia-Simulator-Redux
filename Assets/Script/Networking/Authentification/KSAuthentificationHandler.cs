@@ -11,8 +11,5 @@ namespace KemiaSimulatorCore.Script.Networking.Authentication
     /// </summary>
     public class KSAuthentificationHandler : MonoBehaviour
     {
-        private void Awake(){
-            this.kslog(SystemInfo.deviceUniqueIdentifier);
-        }
     }
 }
