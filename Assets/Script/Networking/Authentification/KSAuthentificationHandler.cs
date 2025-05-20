@@ -75,15 +75,26 @@ namespace KemiaSimulatorCore.Script.Networking.Authentication
                 }
                 catch (AuthenticationException ex)
                 {
-                    // Compare error code to AuthenticationErrorCodes
-                    // Notify the player with the proper error message
-                    Debug.LogException(ex);
+
+                    var error_network_window = KSHUD.Instance.InitializeNewWindow("Erreur Connection",
+                        $"Impossible d'aboutir la requête souhaitée.\n{ex.Message}", Enums.EWindowType.NETWORK_ERROR_MODAL);
+                    
+                    
+                    error_network_window.SendCallbackBuffer(Enums.EWindowCallback.OK_BTN_REDIRECT_TO_LOGIN_MODAL);
+                    error_network_window.SendCallbackBuffer(Enums.EWindowCallback.EXIT_BTN_REDIRECT_TO_EXIT_GAME);
+                    
+                    error_network_window.ShowWindow();
                 }
                 catch (RequestFailedException ex)
                 {
-                    // Compare error code to CommonErrorCodes
-                    // Notify the player with the proper error message
-                    Debug.LogException(ex);
+                    var error_network_window = KSHUD.Instance.InitializeNewWindow("Erreur Connection",
+                        $"Impossible d'aboutir la requête souhaitée.\n{ex.Message}", Enums.EWindowType.NETWORK_ERROR_MODAL);
+                    
+                    
+                    error_network_window.SendCallbackBuffer(Enums.EWindowCallback.OK_BTN_REDIRECT_TO_LOGIN_MODAL);
+                    error_network_window.SendCallbackBuffer(Enums.EWindowCallback.EXIT_BTN_REDIRECT_TO_EXIT_GAME);
+                    
+                    error_network_window.ShowWindow();
                 }
             }
         }

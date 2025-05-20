@@ -16,6 +16,7 @@ namespace KemiaSimulatorCore.Script.HUD
         private GameObject _windowPrefab;
 
         [SerializeField] private GameObject _windowLoginPrefab;
+        [SerializeField] private GameObject _windowErrorPrefab;
         
         [Header("Canvas :")][SerializeField] private GameObject _canvas;
         public static KSHUD Instance
@@ -51,48 +52,56 @@ namespace KemiaSimulatorCore.Script.HUD
         /// <param name="content">Le contenu du corps de la fenêtre.</param>
         /// <param name="windowType">Le type de la fenêtre  (<see cref="Enums.EWindowType"/>)</param>
         /// <param name="setContentForLoginModal">Utiliser la variable content pour une fenêtre type <see cref="Enums.EWindowType.LOGIN_MODAL"/> ?</param>
-        public void InitializeNewWindow(string title, string content, Enums.EWindowType windowType, bool setContentForLoginModal = false){
+        public KSWindowBase InitializeNewWindow(string title, string content, Enums.EWindowType windowType, bool setContentForLoginModal = false){
+            KSRuntime.HideAllWindow();
+            
             switch (windowType)
             {
+                case Enums.EWindowType.NETWORK_ERROR_MODAL:
                 case Enums.EWindowType.GENERIC_MODAL:
-                    InitializeGenericWindow(title, content);
-                    break;
-                
+                     return InitializeGenericWindow(title, content);
+
                 case Enums.EWindowType.LOGIN_MODAL:
                     if (setContentForLoginModal)
-                        InitializeLoginWindow(title, content);
-                    else
-                    {
-                        InitializeLoginWindow(title);
-                    }
-                    break;
+                        return InitializeLoginWindow(title, content);
+                   
+                    return InitializeLoginWindow(title);
             }
+
+            this.kslogerror("aucune window de ce type ne peux être créée. " + windowType);
+            return null;
         }
 
-        private void InitializeLoginWindow(string title){
+        private KSWindowBase InitializeLoginWindow(string title){
             var window = Instantiate(_windowLoginPrefab, _canvas.transform);
 
             var window_component = window.GetComponentInChildren<KSWindowBase>();
             
             window_component.SetTitle(title);
+
+            return window_component;
         }
         
-        private void InitializeLoginWindow(string title, string content){
+        private KSWindowBase InitializeLoginWindow(string title, string content){
             var window = Instantiate(_windowLoginPrefab, _canvas.transform);
 
             var window_component = window.GetComponentInChildren<KSWindowBase>();
             
             window_component.SetTitle(title);
             window_component.SetContent(content);
+
+            return window_component;
         }
         
-        private void InitializeGenericWindow(string title, string content){
+        private KSWindowBase InitializeGenericWindow(string title, string content){
             var window = Instantiate(_windowPrefab, _canvas.transform);
 
             var window_component = window.GetComponentInChildren<KSWindowBase>();
             
             window_component.SetTitle(title);
             window_component.SetContent(content);
+
+            return window_component;
         }
     }
 }

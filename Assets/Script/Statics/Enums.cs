@@ -7,12 +7,17 @@
         }
 
         public enum EWindowCallback{
-            REQUEST_USER_AUTHENTIFICATION = 1,
+            OK_BTN_REDIRECT_TO_LOGIN_MODAL,
+            EXIT_BTN_REDIRECT_TO_LOGIN_MODAL,
+            
+            OK_BTN_REDIRECT_TO_EXIT_GAME,
+            EXIT_BTN_REDIRECT_TO_EXIT_GAME,
         }
-
+        
         public enum EWindowType{
             GENERIC_MODAL,
             LOGIN_MODAL,
+            NETWORK_ERROR_MODAL,
         }
     }
 }

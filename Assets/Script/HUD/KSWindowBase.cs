@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using KemiaSimulatorCore.Script.Statics;
 using NaughtyAttributes;
 using TMPro;
@@ -71,8 +72,55 @@ namespace KemiaSimulatorCore.Script.HUD{
         public virtual void OnNoButtonClicked(){
             OnNoButtonCallback?.Invoke();
         }
+
+        private List<Enums.EWindowCallback> _callbackBuffer = new List<Enums.EWindowCallback>();
         
-        public void SendCallback(string callback) {}
+        
+        /// <summary>
+        /// Envoyé à la fenêtre une surcharge en mémoire tampon d'un événement lié à un bouton.
+        /// </summary>
+        /// <param name="callback">Le type du callback</param>
+        public void SendCallbackBuffer(Enums.EWindowCallback callback){
+            _callbackBuffer.Add(callback);
+
+            for (int i = 0; i < _callbackBuffer.Count; i++)
+            {
+                while (_callbackBuffer.Count > 0)
+                {
+                    switch (_callbackBuffer[i])
+                    {
+                        case Enums.EWindowCallback.EXIT_BTN_REDIRECT_TO_EXIT_GAME:
+                        case Enums.EWindowCallback.OK_BTN_REDIRECT_TO_EXIT_GAME:
+                            // todo: exit game
+                            _callbackBuffer.RemoveAt(i);
+                            break;
+                
+                        case Enums.EWindowCallback.EXIT_BTN_REDIRECT_TO_LOGIN_MODAL:
+                        case Enums.EWindowCallback.OK_BTN_REDIRECT_TO_LOGIN_MODAL:
+                            var window_login = KSRuntime.GetFirstWindowByType(Enums.EWindowType.LOGIN_MODAL);
+
+                            if (window_login)
+                            {
+                                if (_okButton)
+                                {
+                                    _okButton.onClick.RemoveAllListeners();
+                                    _okButton.onClick.AddListener(window_login.ShowWindow);
+                                }
+                                
+                                if (_exitButton)
+                                {
+                                    _exitButton.onClick.RemoveAllListeners();
+                                    _exitButton.onClick.AddListener(window_login.ShowWindow);
+                                }
+                            }
+                            
+                            this.kslog(_callbackBuffer.Count.ToString());
+                            _callbackBuffer.RemoveAt(i);
+                            break;
+                    }
+                }
+            }
+        }
         
         public virtual void OnExitButtonClicked(){
             OnExitButtonCallback?.Invoke();
@@ -104,6 +152,8 @@ namespace KemiaSimulatorCore.Script.HUD{
         protected virtual void OnWindowOpen() {}
         
         public void ShowWindow(){
+            KSRuntime.HideAllWindow();
+            
             if (!_exitButton || !_okButton || !_noButton || !_titleText || !_contentText)
                 throw new NullReferenceException($"{this} : missconfig!");
             

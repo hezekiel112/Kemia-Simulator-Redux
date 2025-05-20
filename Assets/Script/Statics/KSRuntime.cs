@@ -20,6 +20,17 @@ namespace KemiaSimulatorCore.Script.Statics {
 
             return true;
         }
+
+        public static void HideAllWindow(){
+            if (KSWindowRegistry.Instance.WindowsMap.Count == 0)
+                return;
+            
+            foreach (var window in KSWindowRegistry.Instance.WindowsMap)
+            {
+                if (window.Value.IsWindowOpen)
+                    window.Value.HideWindow();
+            }
+        }
         
         /// <summary>
         /// Renvoie une fenêtre depuis la map ayant le même identifiant.

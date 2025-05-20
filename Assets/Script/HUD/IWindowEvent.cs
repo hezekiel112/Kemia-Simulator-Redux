@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using KemiaSimulatorCore.Script.Statics;
+using TMPro;
 
 namespace KemiaSimulatorCore.Script.HUD{
     public partial interface IWindowEvent{
@@ -9,7 +10,7 @@ namespace KemiaSimulatorCore.Script.HUD{
         public void HideWindow();
         public void ShowWindow();
         
-        public void SendCallback(string callback);
+        public void SendCallbackBuffer(Enums.EWindowCallback callback);
     }
     
     public partial interface IWindowEvent{
