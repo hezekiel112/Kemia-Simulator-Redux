@@ -834,6 +834,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92c28757cb974b778c866c6ebdc336f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _windowId: kswin_login_modal_332
   _windowType: 1
   _exitButton: {fileID: 8109432740743902797}
   _okButton: {fileID: 1753247642299738750}

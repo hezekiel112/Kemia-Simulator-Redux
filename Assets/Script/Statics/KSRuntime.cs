@@ -1,4 +1,7 @@
-﻿using Unity.Services.Core;
+﻿using System.Collections.Generic;
+using System.Linq;
+using KemiaSimulatorCore.Script.HUD;
+using Unity.Services.Core;
 using UnityEngine;
 
 namespace KemiaSimulatorCore.Script.Statics {
@@ -16,6 +19,31 @@ namespace KemiaSimulatorCore.Script.Statics {
 #endif 
 
             return true;
+        }
+        
+        /// <summary>
+        /// Renvoie une fenêtre depuis la map ayant le même identifiant.
+        /// </summary>
+        /// <param name="window_id">L'identifiant de la fenêtre recherchée.</param>
+        /// <returns>La fenêtre cible recherchée.</returns>
+        public static KSWindowBase GetWindowFromRegistry(string window_id) =>
+            KSWindowRegistry.Instance.WindowsMap.GetValueOrDefault(window_id);
+
+
+        /// <summary>
+        /// Renvoie la première fenêtre du type trouvé dans la map.
+        /// </summary>
+        /// <param name="window_type">Le type de fenêtre recherché.</param>
+        /// <returns>La fenêtre du type recherché.</returns>
+        public static KSWindowBase GetFirstWindowByType(Enums.EWindowType window_type){
+            foreach (var window in KSWindowRegistry.Instance.WindowsMap.Values)
+            {
+                if (window.WindowType == window_type)
+                    return window;
+            }
+            
+            KSWindowRegistry.Instance.kslogerror($"aucune window de type {window_type} trouvé");
+            return null;
         }
         
         #if IS_BETA_BUILD

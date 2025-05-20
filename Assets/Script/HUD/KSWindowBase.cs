@@ -45,8 +45,10 @@ namespace KemiaSimulatorCore.Script.HUD{
 
         [Button("Générer ID Unique")]
         private void GenId(){
-            string new_id = _windowId + Random.Range(0, 550);
-            _windowId = new_id;
+            int random_number = Random.Range(100, 999);
+            
+            string new_window_id = $"kswin_{_windowType}_{random_number}".ToLowerInvariant();
+            _windowId = new_window_id;
         }
         
         private void OnDisable(){
