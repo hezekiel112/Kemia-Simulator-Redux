@@ -1,7 +1,6 @@
 using UnityEngine;
 
-namespace KemiaSimulatorCore {
-
+namespace KemiaSimulatorCore.Script.Statics {
     /// <summary>
     ///     GameVersion est un struct pour stocker la version du build.
     /// </summary>
@@ -12,6 +11,10 @@ namespace KemiaSimulatorCore {
         /// </summary>
         public string BuildVersion { get; }
 
+        #if IS_BETA_BUILD
+        public const int BETA_BUILD_IDENTIFIER = 001;
+        #endif
+        
         /// <summary>
         /// Applique la valeur <see cref="BuildVersion"/> utilise pour afficher la version du build.
         /// </summary>
