@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using KemiaSimulatorCore.Script.Game.Manager;
 using KemiaSimulatorCore.Script.Helper;
 using KemiaSimulatorCore.Script.HUD;
 using KemiaSimulatorCore.Script.Statics;
@@ -88,7 +89,7 @@ namespace KemiaSimulatorCore.Script.Networking.Authentication
                 catch (RequestFailedException ex)
                 {
                     var error_network_window = KSHUD.Instance.InitializeNewWindow("Erreur Connection",
-                        $"Impossible d'aboutir la requête souhaitée.\n{ex.Message}", Enums.EWindowType.NETWORK_ERROR_MODAL);
+                        $"Impossible d'aboutir la requête souhaitée.\n{GetExceptionRequest(ex).Item1} \n Erreur Code: {GetExceptionRequest(ex).Item2}", Enums.EWindowType.NETWORK_ERROR_MODAL);
                     
                     
                     error_network_window.SendCallbackBuffer(Enums.EWindowCallback.OK_BTN_REDIRECT_TO_LOGIN_MODAL);
@@ -106,29 +107,127 @@ namespace KemiaSimulatorCore.Script.Networking.Authentication
         public async void SignInAnonymously(){
             if (!IsServerReady() || AuthenticationService.Instance.IsSignedIn)
             {
-                this.kslogwarn($"impossible de se connecter. connexion aux services ugs en cours ou player deja connecter ? signed-in : ({AuthenticationService.Instance.IsSignedIn})");
                 return;
             }
-            
+
             try
             {
                 await AuthenticationService.Instance.SignInAnonymouslyAsync();
-                
+
                 if (AuthenticationService.Instance.IsSignedIn)
-                    this.kslog($"connexion anonyme réussie signed-in ({AuthenticationService.Instance.IsSignedIn})({AuthenticationService.Instance.PlayerId})");
+                    this.kslog(
+                        $"connexion anonyme réussie signed-in ({AuthenticationService.Instance.IsSignedIn})({AuthenticationService.Instance.PlayerId})");
+            }
+
+            catch (AuthenticationException ex)
+            {
+                var (error_msg, error_code) = GetExceptionRequest(ex);
+                
+                KSHUD.Instance.InitializeNewWindow(
+                    "Erreur de connection.", 
+                    $"Impossible de se connecté au serveur.\ncode d'erreur: {error_code}\n'{error_msg}'", 
+                    Enums.EWindowType.GENERIC_MODAL);
             }
             
             catch (RequestFailedException ex)
             {
                 var (error_msg, error_code) = GetExceptionRequest(ex);
                 
-                KSHUD.Instance.InitializeNewWindow("Erreur de connection.", $"Impossible de se connecté au serveur.\ncode d'erreur: {error_code}\n'{error_msg}'", Enums.EWindowType.GENERIC_MODAL);
+                KSHUD.Instance.InitializeNewWindow(
+                    "Erreur de connection.", 
+                    $"Impossible de se connecté au serveur.\ncode d'erreur: {error_code}\n'{error_msg}'", 
+                    Enums.EWindowType.GENERIC_MODAL);
             }
         }
 
+        public static (string, int) GetExceptionRequest(AuthenticationException exception){
+            int code = exception.ErrorCode;
+            string errorMessage = "Erreur Inconnue";
+
+            if (exception.ErrorCode == CommonErrorCodes.Conflict)
+            {
+                errorMessage = "Conflit serveur.";
+            }
+
+            if (exception.ErrorCode == CommonErrorCodes.Forbidden)
+            {
+                errorMessage = "Tentative d'accès non autorisée.";
+            }
+
+            if (exception.ErrorCode == CommonErrorCodes.TransportError)
+            {
+                errorMessage = "Erreur de transite de paquet serveur.";
+            }
+
+            if (exception.ErrorCode == CommonErrorCodes.Timeout)
+            {
+                errorMessage = "Connection non aboutie.";
+            }
+
+            if (exception.ErrorCode == CommonErrorCodes.InvalidRequest) ;
+            {
+                errorMessage = "Requête web mal formée.";
+            }
+
+            if (exception.ErrorCode == CommonErrorCodes.Unknown)
+            {
+                errorMessage = "Une erreur inconnue est survenue.";
+            }
+
+            if (exception.ErrorCode == CommonErrorCodes.ApiMissing)
+            {
+                errorMessage = "Une erreur inconnue est survenue";
+            }
+
+            if (exception.ErrorCode == CommonErrorCodes.InvalidToken)
+            {
+                errorMessage = "Une erreur inconnue est survenue.";
+            }
+
+            if (exception.ErrorCode == CommonErrorCodes.NotFound)
+            {
+                errorMessage = "La ressource demandée est indisponible pour le moment.";
+            }
+
+            if (exception.ErrorCode == CommonErrorCodes.RequestRejected)
+            {
+                errorMessage = "Requête interdite.";
+            }
+
+            if (exception.ErrorCode == CommonErrorCodes.ServiceUnavailable)
+            {
+                errorMessage = "Le serveur est momentanément indisponible.";
+            }
+
+            if (exception.ErrorCode == CommonErrorCodes.TokenExpired)
+            {
+                errorMessage = "Session joueur expirée. Veuillez reformuler la requête.";
+            }
+
+            if (exception.ErrorCode == CommonErrorCodes.TooManyRequests)
+            {
+                errorMessage = "Le serveur est momentanément indisponible.";
+            }
+
+            if (exception.ErrorCode == CommonErrorCodes.PlayerPolicyAccessDenied)
+            {
+                errorMessage = "Le serveur est momentanément indisponible.";
+            }
+
+            if (exception.ErrorCode == CommonErrorCodes.ProjectPolicyAccessDenied)
+            {
+                errorMessage = "Le serveur est momentanément indisponible.";
+            }
+            
+            return (errorMessage, code);
+        }
+        
+        // todo: reformuler ces erreurs pour les rendres user friendly.
         public static (string, int) GetExceptionRequest(RequestFailedException exception){
             int code = exception.ErrorCode;
-            string errorMessage = "Erreur inconnu.";
+            string errorMessage = "Erreur Inconnue.";
+            
+            // un bordel monstre, s'agirait de clean tout ça vers des strings constants dans /statics.
             
             if (exception.ErrorCode == AuthenticationErrorCodes.BannedUser)
             {
@@ -189,7 +288,10 @@ namespace KemiaSimulatorCore.Script.Networking.Authentication
         }
         
         private void OnSignedIn(){
-            
+            KSHUD.Instance.InitializeNewWindow(
+                "Kemia Simulator Redux " + GameManager.Instance.GameVersion,
+                $"Bienvenue, {AuthenticationService.Instance.PlayerName}",
+                Enums.EWindowType.GENERIC_MODAL);
         }
         
         private void OnSignedOut(){

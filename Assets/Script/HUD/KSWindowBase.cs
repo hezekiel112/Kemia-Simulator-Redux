@@ -45,7 +45,7 @@ namespace KemiaSimulatorCore.Script.HUD{
         }
 
         [Button("Générer ID Unique")]
-        private void GenId(){
+        private void GenerateNewWindowID(){
             int random_number = Random.Range(100, 999);
             
             string new_window_id = $"kswin_{_windowType}_{random_number}".ToLowerInvariant();
@@ -136,8 +136,15 @@ namespace KemiaSimulatorCore.Script.HUD{
         }
         
         private void Start(){
+            if (string.IsNullOrEmpty(WindowID))
+            {
+                this.kslogwarn("id null pour la fenêtre : " + name);
+                this.kslogwarn("création d'un id temporaire ... ");
+                
+                GenerateNewWindowID();
+            }
+
             ShowWindow();
-            KSWindowRegistry.Instance.AddWindowToRegistry(_windowId, this);
         }
 
         protected delegate void WhenOkButtonClicked();
@@ -152,6 +159,19 @@ namespace KemiaSimulatorCore.Script.HUD{
         protected virtual void OnWindowOpen() {}
         
         public void ShowWindow(){
+            if (!KSRuntime.GetWindowFromRegistry(_windowId))
+            {
+                if (string.IsNullOrEmpty(WindowID))
+                {
+                    this.kslogwarn("id null pour la fenêtre : " + name);
+                    this.kslogwarn("création d'un id temporaire ... ");
+                
+                    GenerateNewWindowID();
+                }
+                
+                KSWindowRegistry.Instance.AddWindowToRegistry(_windowId, this);
+            }
+            
             KSRuntime.HideAllWindow();
             
             if (!_exitButton || !_okButton || !_noButton || !_titleText || !_contentText)

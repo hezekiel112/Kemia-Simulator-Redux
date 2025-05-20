@@ -24,12 +24,12 @@ namespace KemiaSimulatorCore.Script.HUD{
             }
         }
 
-        public void AddWindowToRegistry(string windowName, KSWindowBase instance){
-            _windowsMap.TryAdd(windowName, instance);
+        public void AddWindowToRegistry(string window_id, KSWindowBase instance){
+            _windowsMap.TryAdd(window_id, instance);
         }
 
-        public void RemoveWindowFromRegistry(string windowName){
-            _windowsMap.Remove(windowName);
+        public void RemoveWindowFromRegistry(string window_id){
+            _windowsMap.Remove(window_id);
         }
     }
 }
