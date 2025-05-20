@@ -23,11 +23,20 @@ namespace KemiaSimulatorCore.Script.Networking
             private set;
         }
         
-        private void Awake(){
+        private async void Awake(){
             if (!Instance || Instance)
                 Instance = this;
             
             DontDestroyOnLoad(this);
+
+            try
+            {
+                await UnityServices.InitializeAsync();
+            }
+            catch (Exception e)
+            {
+                this.kslogerror("initialisation des services unity échouer! " + e.Message);
+            }
         }
 
         private async void Start(){
@@ -38,8 +47,9 @@ namespace KemiaSimulatorCore.Script.Networking
                 await StartUnityServices();
                 
             }
-            catch(Exception e)
+            catch(RequestFailedException e)
             {
+                this.kslogerror("connection impossible au serveur ou erreur de connection internet");
                 this.kslogerror(e.Message);
             }
         }

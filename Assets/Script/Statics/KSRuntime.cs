@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.Services.Core;
+using UnityEngine;
 
 namespace KemiaSimulatorCore.Script.Statics {
     /// <summary>
@@ -16,7 +17,7 @@ namespace KemiaSimulatorCore.Script.Statics {
 
             return true;
         }
-
+        
         #if IS_BETA_BUILD
         /// <summary>
         /// Retourne une nouvelle instance de <see cref="GameVersion"/>

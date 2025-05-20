@@ -1,5 +1,7 @@
 ﻿using KemiaSimulatorCore.Script.Networking;
+using KemiaSimulatorCore.Script.Networking.Authentication;
 using KemiaSimulatorCore.Script.Statics;
+using Unity.Services.Authentication;
 
 namespace KemiaSimulatorCore.Script.HUD{
     /// <summary>
@@ -15,7 +17,7 @@ namespace KemiaSimulatorCore.Script.HUD{
         }
         
         private void Sign(){
-            this.kslog("test");
+            KSAuthentificationHandler.Instance.SignInAnonymously();
         }
 
         private void Register(){

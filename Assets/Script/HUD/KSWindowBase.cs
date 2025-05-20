@@ -1,5 +1,6 @@
 ﻿using System;
 using KemiaSimulatorCore.Script.Statics;
+using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -18,6 +19,10 @@ namespace KemiaSimulatorCore.Script.HUD{
         [SerializeField] private Button _okButton, _noButton;
         [SerializeField] private TextMeshProUGUI _titleText, _contentText;
         
+        [Header("Seulement pour les types window login modal :")]
+        [SerializeField, ShowIf("_windowType", Enums.EWindowType.LOGIN_MODAL)] private TMP_InputField _usernameInputField;
+        [SerializeField, ShowIf("_windowType", Enums.EWindowType.LOGIN_MODAL)] private TMP_InputField _passwordInputField;
+
         private bool _isWindowOpen = false;
 
         public bool IsWindowOpen
@@ -33,6 +38,14 @@ namespace KemiaSimulatorCore.Script.HUD{
         private void OnDisable(){
             _isWindowOpen = false;
             _exitButton.onClick.RemoveAllListeners();
+        }
+
+        public string GetPasswordFieldContent(){
+            return _passwordInputField.text;
+        }
+
+        public string GetUsernameFieldContent(){
+            return _usernameInputField.text;
         }
         
         public void OnOkButtonClicked(){

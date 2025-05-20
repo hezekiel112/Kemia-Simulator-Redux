@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using KemiaSimulatorCore.Script.Statics;
+using Unity.Services.Authentication;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,10 +41,17 @@ namespace KemiaSimulatorCore.Script.HUD
         }
 
         private void Start(){
-            InitializeNewWindow("hello", "world", Enums.EWindowType.LOGIN_MODAL);
+            InitializeNewWindow("Inscription Requise Pour Kemia Simulator", string.Empty, Enums.EWindowType.LOGIN_MODAL);
         }
         
-        public void InitializeNewWindow(string title, string content, Enums.EWindowType windowType){
+        /// <summary>
+        /// Initialise une nouvelle fenêtre. Laissez content vide pour une fenêtre de login si besoin.
+        /// </summary>
+        /// <param name="title">Le titre de la fenêtre</param>
+        /// <param name="content">Le contenu du corps de la fenêtre.</param>
+        /// <param name="windowType">Le type de la fenêtre  (<see cref="Enums.EWindowType"/>)</param>
+        /// <param name="setContentForLoginModal">Utiliser la variable content pour une fenêtre type <see cref="Enums.EWindowType.LOGIN_MODAL"/> ?</param>
+        public void InitializeNewWindow(string title, string content, Enums.EWindowType windowType, bool setContentForLoginModal = false){
             switch (windowType)
             {
                 case Enums.EWindowType.GENERIC_MODAL:
@@ -51,11 +59,24 @@ namespace KemiaSimulatorCore.Script.HUD
                     break;
                 
                 case Enums.EWindowType.LOGIN_MODAL:
-                    InitializeLoginWindow(title, content);
+                    if (setContentForLoginModal)
+                        InitializeLoginWindow(title, content);
+                    else
+                    {
+                        InitializeLoginWindow(title);
+                    }
                     break;
             }
         }
 
+        private void InitializeLoginWindow(string title){
+            var window = Instantiate(_windowLoginPrefab, _canvas.transform);
+
+            var window_component = window.GetComponentInChildren<KSWindowBase>();
+            
+            window_component.SetTitle(title);
+        }
+        
         private void InitializeLoginWindow(string title, string content){
             var window = Instantiate(_windowLoginPrefab, _canvas.transform);
 
