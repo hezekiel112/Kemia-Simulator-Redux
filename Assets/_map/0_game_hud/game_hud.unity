@@ -576,6 +576,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _windowPrefab: {fileID: 2976740101895971466, guid: dac8cf8c8ebd2a449b52c5b8c2a66325,
     type: 3}
+  _windowLoginPrefab: {fileID: 2976740101895971466, guid: c921e8e1ba29ca64580bb89011ab693c,
+    type: 3}
   _canvas: {fileID: 409546338}
 --- !u!1 &1111538741
 GameObject:

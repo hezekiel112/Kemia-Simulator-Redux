@@ -1,4 +1,5 @@
 ﻿using System;
+using KemiaSimulatorCore.Script.Statics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,7 +10,9 @@ namespace KemiaSimulatorCore.Script.HUD{
     ///     Ce script fait hériter les autres fenêtres d'une fondation de méthode requise pour le comportement des fenêtres.
     /// </summary>
     public abstract class KSWindowBase : MonoBehaviour, IWindowEvent{
-        [Header("Window Infos :")] 
+        [Header("Window Infos :")] [SerializeField]
+        private Enums.EWindowType _windowType;
+        
         [SerializeField]  private Button _exitButton;
 
         [SerializeField] private Button _okButton, _noButton;
@@ -22,6 +25,11 @@ namespace KemiaSimulatorCore.Script.HUD{
         public bool IsWindowOpen
         {
             get => _isWindowOpen;
+        }
+
+        public Enums.EWindowType WindowType
+        {
+            get => _windowType;
         }
         
         private void OnDisable(){

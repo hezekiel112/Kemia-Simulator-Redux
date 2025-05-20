@@ -9,5 +9,10 @@
         public enum EWindowCallback{
             REQUEST_USER_AUTHENTIFICATION = 1,
         }
+
+        public enum EWindowType{
+            GENERIC_MODAL,
+            LOGIN_MODAL,
+        }
     }
 }

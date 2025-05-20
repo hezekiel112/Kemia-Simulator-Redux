@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using KemiaSimulatorCore.Script.Statics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,13 +40,35 @@ namespace KemiaSimulatorCore.Script.HUD
         }
 
         private void Start(){
-            InitializeNewWindow("hello", "world");
+            InitializeNewWindow("hello", "world", Enums.EWindowType.LOGIN_MODAL);
         }
         
-        public void InitializeNewWindow(string title, string content){
+        public void InitializeNewWindow(string title, string content, Enums.EWindowType windowType){
+            switch (windowType)
+            {
+                case Enums.EWindowType.GENERIC_MODAL:
+                    InitializeGenericWindow(title, content);
+                    break;
+                
+                case Enums.EWindowType.LOGIN_MODAL:
+                    InitializeLoginWindow(title, content);
+                    break;
+            }
+        }
+
+        private void InitializeLoginWindow(string title, string content){
+            var window = Instantiate(_windowLoginPrefab, _canvas.transform);
+
+            var window_component = window.GetComponentInChildren<KSWindowBase>();
+            
+            window_component.SetTitle(title);
+            window_component.SetContent(content);
+        }
+        
+        private void InitializeGenericWindow(string title, string content){
             var window = Instantiate(_windowPrefab, _canvas.transform);
 
-            var window_component = window.GetComponentInChildren<KSWindow>();
+            var window_component = window.GetComponentInChildren<KSWindowBase>();
             
             window_component.SetTitle(title);
             window_component.SetContent(content);

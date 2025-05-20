@@ -597,8 +597,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4266561156103956810}
-  - component: {fileID: 2916191659173402755}
   - component: {fileID: -1664557071502531262}
+  - component: {fileID: 2916191659173402755}
   - component: {fileID: 8291463593037061171}
   m_Layer: 5
   m_Name: Window Sample Login
@@ -632,6 +632,105 @@ RectTransform:
   m_AnchoredPosition: {x: -300, y: -300}
   m_SizeDelta: {x: 757.6415, y: 645.8235}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &-1664557071502531262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2976740101895971466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92c28757cb974b778c866c6ebdc336f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _windowType: 1
+  _exitButton: {fileID: 8109432740743902797}
+  _okButton: {fileID: 1753247642299738750}
+  _noButton: {fileID: 2758082599134588563}
+  _titleText: {fileID: 2370491248866788123}
+  _contentText: {fileID: 6862628856206763707}
+  _onOkButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8291463593037061171}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: -1664557071502531262}
+        m_TargetAssemblyTypeName: KemiaSimulatorCore.Script.HUD.KSWindowLogin, KSCore
+        m_MethodName: OnOkButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onNoButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8291463593037061171}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: -1664557071502531262}
+        m_TargetAssemblyTypeName: KemiaSimulatorCore.Script.HUD.KSWindowBase, KSCore
+        m_MethodName: OnNoButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onExitButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8291463593037061171}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: -1664557071502531262}
+        m_TargetAssemblyTypeName: KemiaSimulatorCore.Script.HUD.KSWindowBase, KSCore
+        m_MethodName: OnExitButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!82 &2916191659173402755
 AudioSource:
   m_ObjectHideFlags: 0
@@ -728,104 +827,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &-1664557071502531262
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2976740101895971466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92c28757cb974b778c866c6ebdc336f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _exitButton: {fileID: 8109432740743902797}
-  _okButton: {fileID: 1753247642299738750}
-  _noButton: {fileID: 2758082599134588563}
-  _titleText: {fileID: 2370491248866788123}
-  _contentText: {fileID: 6862628856206763707}
-  _onOkButton:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8291463593037061171}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: -1664557071502531262}
-        m_TargetAssemblyTypeName: KemiaSimulatorCore.Script.HUD.KSWindowLogin, KSCore
-        m_MethodName: OnOkButtonClicked
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onNoButton:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8291463593037061171}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: -1664557071502531262}
-        m_TargetAssemblyTypeName: KemiaSimulatorCore.Script.HUD.KSWindowBase, KSCore
-        m_MethodName: OnNoButtonClicked
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onExitButton:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8291463593037061171}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: -1664557071502531262}
-        m_TargetAssemblyTypeName: KemiaSimulatorCore.Script.HUD.KSWindowBase, KSCore
-        m_MethodName: OnExitButtonClicked
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!82 &8291463593037061171
 AudioSource:
   m_ObjectHideFlags: 0
