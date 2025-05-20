@@ -2,8 +2,10 @@
 
 namespace KemiaSimulatorCore.Script.Statics{
     public static class KSLog{
-        private static void kslog_builder(this Object source, string trace, LogType log_type = LogType.Log){
+        private static void kslog_builder(this Object source, string message, LogType log_type = LogType.Log){
             #if UNITY_EDITOR
+
+            string trace = $"[ {source.name} ] {message} (hide:{source.hideFlags != HideFlags.None})";
             switch (log_type)
             {
                 case LogType.Log:
