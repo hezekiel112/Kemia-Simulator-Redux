@@ -16,6 +16,12 @@ namespace KemiaSimulatorCore.Script.Networking
             get;
             private set;
         }
+
+        public bool IsUGSInitialized
+        {
+            get;
+            private set;
+        }
         
         private void Awake(){
             if (!Instance || Instance)
@@ -25,21 +31,33 @@ namespace KemiaSimulatorCore.Script.Networking
         }
 
         private async void Start(){
+            UnityServices.Initialized += OnServicesInitialized;
+            UnityServices.InitializeFailed += OnServicesFailed;
             try
             {
                 await StartUnityServices();
-                if (UnityServices.State == ServicesInitializationState.Initialized)
-                    this.kslog("unity services multijoueur OK");
-                else
-                {
-                    this.kslog("unity services multijoueur non actif");
-                    this.kslog(UnityServices.State.ToString());
-                }
+                
             }
             catch(Exception e)
             {
                 this.kslogerror(e.Message);
             }
+        }
+
+        private void OnDisable(){
+            UnityServices.Initialized -= OnServicesInitialized;
+            UnityServices.InitializeFailed -= OnServicesFailed;
+        }
+
+        private void OnServicesInitialized(){
+            this.kslog("unity services multijoueur OK");
+            IsUGSInitialized = true;
+        }
+
+        private void OnServicesFailed(Exception ex){
+            this.kslogerror("unity services multijoueur non actif");
+            this.kslogerror(UnityServices.State.ToString());
+            this.kslogerror(ex.Message);
         }
         
         private async Task StartUnityServices(){
