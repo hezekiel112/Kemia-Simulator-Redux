@@ -11,15 +11,30 @@ namespace KemiaSimulatorCore.Script.Networking
     /// </summary>
     public class KSNetworkingBootstrap : MonoBehaviour
     {
+        public static KSNetworkingBootstrap Instance
+        {
+            get;
+            private set;
+        }
+        
         private void Awake(){
+            if (!Instance || Instance)
+                Instance = this;
+            
             DontDestroyOnLoad(this);
         }
 
-        private async void Start(){
+        public async Task TryConnect(){
             try
             {
                 await StartUnityServices();
-                this.kslog("unity services multijoueur OK");
+                if (UnityServices.State == ServicesInitializationState.Initialized)
+                    this.kslog("unity services multijoueur OK");
+                else
+                {
+                    this.kslog("unity services multijoueur non actif");
+                    this.kslog(UnityServices.State.ToString());
+                }
             }
             catch(Exception e)
             {

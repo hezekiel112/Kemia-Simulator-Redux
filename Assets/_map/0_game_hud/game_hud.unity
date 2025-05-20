@@ -197,7 +197,7 @@ Transform:
   m_GameObject: {fileID: 193808718}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.96347, y: -6.692219, z: -5.754456}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -255,9 +255,9 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 2560, y: 1440}
+  m_ReferenceResolution: {x: 1980, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -363,6 +363,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0111edd013d304d4e993ce68581720eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &594110914
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 594110916}
+  - component: {fileID: 594110915}
+  m_Layer: 0
+  m_Name: _sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!81 &594110915
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 594110914}
+  m_Enabled: 1
+--- !u!4 &594110916
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 594110914}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1834.6346, y: 1133.4415, z: -8.30475}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &623753929
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,7 +705,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1133198065}
   - component: {fileID: 1133198067}
-  - component: {fileID: 1133198066}
   - component: {fileID: 1133198068}
   m_Layer: 0
   m_Name: Main NavCam 1
@@ -682,21 +721,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1133198064}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.96347, y: 7.692219, z: -4.245544}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 193808719}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &1133198066
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1133198064}
-  m_Enabled: 1
 --- !u!20 &1133198067
 Camera:
   m_ObjectHideFlags: 0
@@ -801,3 +832,4 @@ SceneRoots:
   - {fileID: 623753930}
   - {fileID: 193808719}
   - {fileID: 409546342}
+  - {fileID: 594110916}

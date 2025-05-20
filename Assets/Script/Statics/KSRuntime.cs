@@ -12,7 +12,7 @@ namespace KemiaSimulatorCore.Script.Statics {
         public static bool IsRelease(this GameVersion v){
 #if UNITY_EDITOR || IS_BETA_BUILD
             return false;
-#endif
+#endif 
 
             return true;
         }

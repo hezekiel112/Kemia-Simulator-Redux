@@ -1,79 +1,13 @@
-using System;
-using TMPro;
-using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.UI;
+using System.Threading.Tasks;
+using KemiaSimulatorCore.Script.Networking.Authentication;
+using KemiaSimulatorCore.Script.Statics;
 
 namespace KemiaSimulatorCore.Script.HUD
 {
-    public class KSWindow : MonoBehaviour, IWindowEvent {
-        [Header("Window Infos :")] 
-        [SerializeField]  private Button _exitButton;
-
-        [SerializeField] private Button _okButton, _noButton;
-        [SerializeField] private TextMeshProUGUI _titleText, _contentText;
-
-        [SerializeField] private UnityEvent _onOkButton, _onNoButton, _onExitButton;
-        
-        private bool _isWindowOpen = false;
-
-        public bool IsWindowOpen
-        {
-            get => _isWindowOpen;
-        }
-        
-        private void OnDisable(){
-            _isWindowOpen = false;
-            _exitButton.onClick.RemoveAllListeners();
-        }
-
-        public void OnOkButtonClicked(){
-            _onOkButton.Invoke();
-        }
-
-        public void OnNoButtonClicked(){
-            _onNoButton.Invoke();
-        }
-
-        public void OnExitButtonClicked(){
-            _onExitButton.Invoke();
-        }
-        
-        public void HideWindow(){
-            _isWindowOpen = false;
-            Invoke(nameof(HideWindowDelayed), .4f);
-        }
-
-        private void HideWindowDelayed(){
-            gameObject.SetActive(false);
-        }
-        
-        private void Start(){
-            ShowWindow();
-        }
-
-        public void ShowWindow(){
-            if (!_exitButton || !_okButton || !_noButton || !_titleText || !_contentText)
-                throw new NullReferenceException($"{this} : missconfig!");
-            
-            _exitButton.onClick.AddListener(OnExitButtonClicked);
-            _okButton.onClick.AddListener(OnOkButtonClicked);
-            _noButton.onClick.AddListener(OnNoButtonClicked);
-            
-            gameObject.SetActive(true);
-            _isWindowOpen = true;
-        }
-        
-        public void SetTitle(string title) => _titleText.text = title;
-        public void SetContent(string content) => _contentText.text = content;
-    }
-
-    public interface IWindowEvent{
-        public void OnOkButtonClicked();
-        public void OnNoButtonClicked();
-        public void OnExitButtonClicked();
-        
-        public void HideWindow();
-        public void ShowWindow();
+    /// <summary>
+    ///     Ce script gére une fenêtre lambda (affichage de text avec un titre de fenêtre)
+    /// </summary>
+    public class KSWindow : KSWindowBase {
+       
     }
 }

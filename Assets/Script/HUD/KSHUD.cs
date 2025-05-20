@@ -13,6 +13,8 @@ namespace KemiaSimulatorCore.Script.HUD
         [Header("HUD Prefabs :")] [SerializeField]
         private GameObject _windowPrefab;
 
+        [SerializeField] private GameObject _windowLoginPrefab;
+        
         [Header("Canvas :")][SerializeField] private GameObject _canvas;
         public static KSHUD Instance
         {
