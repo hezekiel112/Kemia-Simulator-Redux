@@ -55,6 +55,9 @@ namespace KemiaSimulatorCore.Script.HUD
             gameObject.SetActive(true);
             _isWindowOpen = true;
         }
+        
+        public void SetTitle(string title) => _titleText.text = title;
+        public void SetContent(string content) => _contentText.text = content;
     }
 
     public interface IWindowEvent{

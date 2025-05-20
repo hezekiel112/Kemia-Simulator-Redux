@@ -36,8 +36,20 @@ namespace KemiaSimulatorCore.Script.HUD
             }
         }
 
-        private void InitializeNewWindow(string title, string content){
+        private void Start(){
+            InitializeNewWindow("hello", "world");
+        }
+        
+        public void InitializeNewWindow(string title, string content){
+            var window = Instantiate(_windowPrefab);
             
+            if (window)
+                window.transform.SetParent(_canvas.transform);
+
+            var window_component = window.GetComponent<KSWindow>();
+            
+            window_component.SetTitle(title);
+            window_component.SetContent(content);
         }
     }
 }
