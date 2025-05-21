@@ -146,7 +146,7 @@ namespace KemiaSimulatorCore.Script.HUD{
                 _noButton.onClick.RemoveAllListeners();
             
             _isWindowOpen = false;
-            Invoke(nameof(HideWindowDelayed), .4f);
+            gameObject.SetActive(false);
         }
 
         public void SetOkButtonPresence(bool is_ok_button_active){
@@ -158,15 +158,10 @@ namespace KemiaSimulatorCore.Script.HUD{
             _exitButton.gameObject.SetActive(is_exit_button_active);
         }
         
-        
         public void SetNoButtonPresence(bool is_no_button_active){
             _noButton.gameObject.SetActive(is_no_button_active);
         }
         
-        private void HideWindowDelayed(){
-            gameObject.SetActive(false);
-        }
-
         private void Start(){
             KSWindowRegistry.Instance.AddWindowToRegistry(_windowId, this);
             
@@ -214,7 +209,7 @@ namespace KemiaSimulatorCore.Script.HUD{
         }
         
         public void ResetFlag(){
-            _windowFlag = Enums.EWindowFlag.NONE;
+            _windowFlag = Enums.EWindowFlag.NONE_0;
         }
         
         public void SetTitle(string title) => _titleText.text = title;

@@ -23,6 +23,10 @@ namespace KemiaSimulatorCore.Script.Statics {
 
         /// <summary>
         ///     Fait disparaitre toutes les fenêtres.
+        /// <remarks>
+        ///     Cette méthode vérifie si la scène possède des fenêtres attitrées d'un flag persistent.
+        ///     Le système n'affichera dans ce cas uniquement les fenêtres possédant un flag d'une priorité inférieur.
+        /// </remarks>
         /// </summary>
         public static void HideAllWindow(){
             if (KSWindowRegistry.Instance.WindowsMap.Count == 0)
@@ -30,56 +34,84 @@ namespace KemiaSimulatorCore.Script.Statics {
                 KSWindowRegistry.Instance.kslog("no window");
                 return;
             }
-            
-            foreach (var window in KSWindowRegistry.Instance.WindowsMap)
+
+            var persistent_window = GetAllPersistentsWindow();
+
+            if (persistent_window != null)
             {
-                // --------------------------------------------------------------------------
-                //  note : if a window has a persistent flag, the window will always appear.
-                //   we need to call window.Hide() manually, the system is always ignoring them.
-                // --------------------------------------------------------------------------
-                
-                //  we skip all persistent flag other than Enums.WindowFlag.LOADING_SCREEN or other.
-                if (!window.Value.IsPersistent(out _) && window.Value.IsWindowOpen)
+                foreach (var t in persistent_window)
                 {
-                    KSWindowRegistry.Instance.kslog("window " + window.Key + " hide");
-                    window.Value.HideWindow();
+                    if (t.WindowFlag != Enums.EWindowFlag.NETWORK_ERROR_2 && t.IsWindowOpen)
+                        t.HideWindow();
                 }
+            }
+
+            foreach (var non_persistent_window in KSWindowRegistry.Instance.WindowsMap)
+            {
+                if (!non_persistent_window.Value.IsPersistent() && non_persistent_window.Value.IsWindowOpen)
+                    non_persistent_window.Value.HideWindow();
             }
         }
 
+        public static List<KSWindowBase> GetAllPersistentsWindow(){
+            List<KSWindowBase> persistent_windows_list = new List<KSWindowBase>();
+            
+            foreach (var window in KSWindowRegistry.Instance.WindowsMap)
+            {
+                if (window.Value.IsPersistent() && !persistent_windows_list.Contains(window.Value))
+                {
+                    persistent_windows_list.Add(window.Value);
+                }
+            }
+
+            if (persistent_windows_list.Count > 0)
+                return persistent_windows_list;
+            
+            return null;
+        }
+        
+        public static bool IsPersistent(this KSWindowBase context){
+            return context.WindowFlag == Enums.EWindowFlag.NONE_0;
+        }
+        
         public static bool IsPersistent(this KSWindowBase context, out Enums.EWindowFlag window_flag){
-            if (context.WindowFlag != Enums.EWindowFlag.NONE)
+            if (context.WindowFlag != Enums.EWindowFlag.NONE_0)
             {
                 window_flag = context.WindowFlag;
 
                 return true;
             }
             
-            window_flag = Enums.EWindowFlag.NONE;
-            return context.WindowFlag != Enums.EWindowFlag.NONE;
+            window_flag = Enums.EWindowFlag.NONE_0;
+            return context.WindowFlag != Enums.EWindowFlag.NONE_0;
         }
         
         /// <summary>
         ///     Fait disparaitre toutes les fenêtres.
+        /// <remarks>
+        ///     Cette méthode vérifie si la scène possède des fenêtres attitrées d'un flag persistent.
+        ///     Le système n'affichera dans ce cas uniquement les fenêtres possédant un flag d'une priorité inférieur.
+        /// </remarks>
         /// </summary>
         /// <param name="exceptThisWindow">Fait disparaitre toutes les fenêtres excepter celle-ci.</param>
         public static void HideAllWindow(string exceptThisWindow){
-            if (KSWindowRegistry.Instance.WindowsMap.Count == 0)
-                return;
-            
-            foreach (var window in KSWindowRegistry.Instance.WindowsMap)
+            var persistent_window = GetAllPersistentsWindow();
+
+            if (persistent_window != null)
             {
-                if (!window.Value.IsPersistent(out _) && window.Value.IsWindowOpen)
+                foreach (var t in persistent_window)
                 {
-                    if (window.Value.WindowID != exceptThisWindow)
+                    if (t.WindowFlag != Enums.EWindowFlag.NETWORK_ERROR_2 && t.IsWindowOpen)
                     {
-                        if (window.Value.IsWindowOpen)
-                            window.Value.HideWindow();
+                        t.HideWindow();
                     }
-                    
-                    KSWindowRegistry.Instance.kslog("window " + window.Key + " hide");
-                    window.Value.HideWindow();
                 }
+            }
+
+            foreach (var non_persistent_window in KSWindowRegistry.Instance.WindowsMap)
+            {
+                if (!non_persistent_window.Value.IsPersistent() && non_persistent_window.Value.IsWindowOpen)
+                    non_persistent_window.Value.HideWindow();
             }
         }
         

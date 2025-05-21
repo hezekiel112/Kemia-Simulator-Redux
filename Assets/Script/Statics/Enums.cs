@@ -25,8 +25,9 @@
         }
         
         public enum EWindowFlag{
-            NONE,
-            LOADING_SCREEN,
+            NETWORK_ERROR_2 = 2,
+            LOADING_SCREEN_1 = 1,
+            NONE_0 = 0,
         }
     }
 }

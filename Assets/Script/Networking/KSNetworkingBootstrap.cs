@@ -70,6 +70,8 @@ namespace KemiaSimulatorCore.Script.Networking
             this.kslogerror("unity services multijoueur non actif");
             this.kslogerror(UnityServices.State.ToString());
             this.kslogerror(ex.Message);
+
+            KSAuthentificationHandler.Instance.ShowConnectionErrorWindow();
         }
         
         private async Task StartUnityServices(){

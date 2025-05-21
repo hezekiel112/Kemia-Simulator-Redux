@@ -13,8 +13,7 @@ namespace KemiaSimulatorCore.Script.HUD{
             {
                 SceneManager.LoadScene(scene_id, LoadSceneMode.Additive);
             }
-
-
+            
             KSRuntime.HideAllWindow();
         }
 

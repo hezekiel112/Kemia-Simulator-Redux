@@ -48,11 +48,12 @@ namespace KemiaSimulatorCore.Script.HUD
         /// <param name="content">Le contenu du corps de la fenêtre.</param>
         /// <param name="windowType">Le type de la fenêtre  (<see cref="Enums.EWindowType"/>)</param>
         /// <param name="setContentForLoginModal">Utiliser la variable content pour une fenêtre type <see cref="Enums.EWindowType.LOGIN_MODAL"/> ?</param>
-        public KSWindowBase InitializeNewWindow(string title, string content, Enums.EWindowType windowType, bool setContentForLoginModal = false){
+        public KSWindowBase InitializeNewWindow(string title, string content, Enums.EWindowType windowType, Enums.EWindowFlag flag, bool setContentForLoginModal = false){
             KSRuntime.HideAllWindow();
 
             var pooled_window = KSRuntime.GetFirstWindowByType(windowType);
-
+            pooled_window.SetPersistantFlag(flag);
+            
             if (pooled_window)
             {
                 switch (windowType)

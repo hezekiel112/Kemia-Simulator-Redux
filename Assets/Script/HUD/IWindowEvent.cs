@@ -32,38 +32,40 @@ namespace KemiaSimulatorCore.Script.HUD{
         /// Envoi un buffer callback en mémoire tampon.
         /// Cette méthode utilise un 'callback' pour assigner un listener suivant le type du callback.
         /// </summary>
-        /// <param name="callback"></param>
+        /// <param name="callback">Le nouveau callback pour cette fenêtre.</param>
         public void SendCallbackBuffer(Enums.EWindowCallback callback);
         
         /// <summary>
         /// Assigne un flag persistent pour cette fenêtre.
-        /// Ce flag sera utilisé pour des méthodes types '<see cref="ShowWindow"/>' ou '<see cref="HideWindow"/>'
+        /// Ce flag est utilisé pour des méthodes types '<see cref="ShowWindow"/>' ou '<see cref="HideWindow"/>'.
+        /// Le système utilise la valeur du flag pour estimer la priorité d'affichage d'une fenêtre.
+        /// Par exemple, le flag <see cref="Enums.EWindowFlag.NETWORK_ERROR_2"/> est plus important que <see cref="Enums.EWindowFlag.LOADING_SCREEN_1"/>.
         /// </summary>
-        /// <param name="new_flag"></param>
+        /// <param name="new_flag">Le nouveau flag pour cette fenêtre.</param>
         public void SetPersistantFlag(Enums.EWindowFlag new_flag);
         
         /// <summary>
-        /// Assigne un flag par défaut type <see cref="Enums.EWindowFlag.NONE"/>
+        /// Assigne un flag par défaut type <see cref="Enums.EWindowFlag.NONE_0"/>
         /// </summary>
         public void ResetFlag();
 
         /// <summary>
         /// Active ou désactive le bouton de la fenêtre de type 'OK'.
         /// </summary>
-        /// <param name="is_ok_button_active">Est-ce que le bouton 'OK' est activé ?</param>
+        /// <param name="is_ok_button_active">Est-ce que le bouton 'OK' sera activé ?</param>
         public void SetOkButtonPresence(bool is_ok_button_active);
         
         /// <summary>
         /// Active ou désactive le bouton de la fenêtre de type 'EXIT'.
         /// </summary>
-        /// <param name="is_exit_button_active">Est-ce que le bouton 'EXIT' est activé ?</param>
+        /// <param name="is_exit_button_active">Est-ce que le bouton 'EXIT' sera activé ?</param>
         public void SetExitButtonPresence(bool is_exit_button_active);
         
         
         /// <summary>
         /// Active ou désactive le bouton de la fenêtre de type 'NO'.
         /// </summary>
-        /// <param name="is_no_button_active">Est-ce que le bouton 'NO' est activé ?</param>
+        /// <param name="is_no_button_active">Est-ce que le bouton 'NO' sera activé ?</param>
         public void SetNoButtonPresence(bool is_no_button_active);
     }
     
@@ -71,14 +73,14 @@ namespace KemiaSimulatorCore.Script.HUD{
         /// <summary>
         /// Renvoie la valeur du champ de caractère <see cref="TMP_InputField"/>
         /// </summary>
-        /// <returns></returns>
+        /// <returns>La valeur du champ de caractère 'username' de cette fenêtre.</returns>
         public string GetUsernameFieldContent();
         
         /// <summary>
         /// Renvoie la valeur du champ de caractère <see cref="TMP_InputField"/>
         /// Cette méthode est la même que : <see cref="GetUsernameFieldContent"/>
         /// </summary>
-        /// <returns></returns>
+        /// <returns>La valeur du champ de caractère 'password' de cette fenêtre.</returns>
         public string GetPasswordFieldContent();
     }
 }
