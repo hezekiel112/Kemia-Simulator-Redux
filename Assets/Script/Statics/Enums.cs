@@ -19,5 +19,10 @@
             LOGIN_MODAL,
             NETWORK_ERROR_MODAL,
         }
+        
+        public enum EWindowFlag{
+            NONE,
+            LOADING_SCREEN,
+        }
     }
 }

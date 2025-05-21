@@ -26,13 +26,37 @@ namespace KemiaSimulatorCore.Script.Statics {
         /// </summary>
         public static void HideAllWindow(){
             if (KSWindowRegistry.Instance.WindowsMap.Count == 0)
+            {
+                KSWindowRegistry.Instance.kslog("no window");
                 return;
+            }
             
             foreach (var window in KSWindowRegistry.Instance.WindowsMap)
             {
-                if (window.Value.IsWindowOpen)
+                // --------------------------------------------------------------------------
+                //  note : if a window has a persistent flag, the window will always appear.
+                //   we need to call window.Hide() manually, the system is always ignoring them.
+                // --------------------------------------------------------------------------
+                
+                //  we skip all persistent flag other than Enums.WindowFlag.LOADING_SCREEN or other.
+                if (!window.Value.IsPersistent(out _) && window.Value.IsWindowOpen)
+                {
+                    KSWindowRegistry.Instance.kslog("window " + window.Key + " hide");
                     window.Value.HideWindow();
+                }
             }
+        }
+
+        public static bool IsPersistent(this KSWindowBase context, out Enums.EWindowFlag window_flag){
+            if (context.WindowFlag != Enums.EWindowFlag.NONE)
+            {
+                window_flag = context.WindowFlag;
+
+                return true;
+            }
+            
+            window_flag = Enums.EWindowFlag.NONE;
+            return context.WindowFlag != Enums.EWindowFlag.NONE;
         }
         
         /// <summary>
@@ -45,10 +69,16 @@ namespace KemiaSimulatorCore.Script.Statics {
             
             foreach (var window in KSWindowRegistry.Instance.WindowsMap)
             {
-                if (window.Value.WindowID != exceptThisWindow)
+                if (!window.Value.IsPersistent(out _) && window.Value.IsWindowOpen)
                 {
-                    if (window.Value.IsWindowOpen)
-                        window.Value.HideWindow();
+                    if (window.Value.WindowID != exceptThisWindow)
+                    {
+                        if (window.Value.IsWindowOpen)
+                            window.Value.HideWindow();
+                    }
+                    
+                    KSWindowRegistry.Instance.kslog("window " + window.Key + " hide");
+                    window.Value.HideWindow();
                 }
             }
         }

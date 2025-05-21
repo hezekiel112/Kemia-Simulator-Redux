@@ -40,14 +40,6 @@ namespace KemiaSimulatorCore.Script.HUD
                 Instance = this;
             }
         }
-
-        private void Start(){
-            Invoke(nameof(ShowLoginWindow), .4f);
-        }
-
-        private void ShowLoginWindow(){
-            KSRuntime.GetFirstWindowByType(Enums.EWindowType.LOGIN_MODAL).ShowWindow();
-        }
         
         /// <summary>
         /// Initialise une nouvelle fenêtre. Laissez content vide pour une fenêtre de login si besoin.
@@ -96,7 +88,6 @@ namespace KemiaSimulatorCore.Script.HUD
             var window_component = window.GetComponentInChildren<KSWindowBase>();
             
             window_component.SetTitle(title);
-
             return window_component;
         }
         

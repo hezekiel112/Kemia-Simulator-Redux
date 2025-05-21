@@ -28,6 +28,7 @@ namespace KemiaSimulatorCore.Script.HUD{
             print("added" + instance.WindowType);
             
             _windowsMap.TryAdd(window_id, instance);
+            print(_windowsMap.Count);
         }
 
         public void RemoveWindowFromRegistry(string window_id){

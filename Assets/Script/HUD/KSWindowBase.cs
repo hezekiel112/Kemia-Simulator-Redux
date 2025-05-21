@@ -17,7 +17,8 @@ namespace KemiaSimulatorCore.Script.HUD{
         private string _windowId;
         
         [SerializeField] private Enums.EWindowType _windowType;
-        
+        [SerializeField] private Enums.EWindowFlag _windowFlag;
+
         [SerializeField]  private Button _exitButton;
 
         [SerializeField] protected Button _okButton, _noButton;
@@ -27,9 +28,14 @@ namespace KemiaSimulatorCore.Script.HUD{
         [SerializeField, ShowIf("_windowType", Enums.EWindowType.LOGIN_MODAL)] private TMP_InputField _usernameInputField;
         [SerializeField, ShowIf("_windowType", Enums.EWindowType.LOGIN_MODAL)] private TMP_InputField _passwordInputField;
 
-        private bool _isWindowOpen = false;
+        private bool _isWindowOpen = true;
         [SerializeField] private List<Enums.EWindowCallback> _callbackBuffer = new List<Enums.EWindowCallback>();
 
+        public Enums.EWindowFlag WindowFlag
+        {
+            get => _windowFlag;
+        }
+        
         public List<Enums.EWindowCallback> CallbacksBuffer
         {
             get => _callbackBuffer;
@@ -158,7 +164,9 @@ namespace KemiaSimulatorCore.Script.HUD{
                 GenerateNewWindowID();
             }
 
-            ShowWindow();
+            print(_isWindowOpen);
+            
+            HideWindow();
         }
 
         protected delegate void WhenOkButtonClicked();
@@ -179,6 +187,14 @@ namespace KemiaSimulatorCore.Script.HUD{
             _isWindowOpen = true;
             
             OnWindowOpen();
+        }
+        
+        public void SetPersistantFlag(Enums.EWindowFlag new_flag){
+            _windowFlag = new_flag;
+        }
+        
+        public void ResetFlag(){
+            _windowFlag = Enums.EWindowFlag.NONE;
         }
         
         public void SetTitle(string title) => _titleText.text = title;

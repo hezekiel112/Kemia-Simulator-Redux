@@ -31,9 +31,36 @@ namespace KemiaSimulatorCore.Script.HUD{
         }
 
         private void Start(){
-            Initialize(GetSceneScopeByInt((int)_sceneScope));
+            SceneManager.sceneLoaded += OnSceneLoaded;
+            SceneManager.sceneUnloaded += OnSceneUnloaded;
+            
+            Invoke(nameof(LoadTitleScreen), .4f);
         }
 
+        private void OnSceneUnloaded(Scene scene){
+            var window = KSRuntime.GetFirstWindowByType(Enums.EWindowType.GENERIC_MODAL);
+            
+            window.SetTitle("Chargement ...");
+            window.SetContent("Chargement en cours.\nVeuillez patienter.");
+            window.SetPersistantFlag(Enums.EWindowFlag.LOADING_SCREEN);
+            
+            window.ShowWindow();
+        }
+        
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode){
+            var window = KSRuntime.GetFirstWindowByType(Enums.EWindowType.GENERIC_MODAL);
+            
+            window.SetTitle("Chargement ...");
+            window.SetContent("Chargement en cours.\nVeuillez patienter.");
+            window.SetPersistantFlag(Enums.EWindowFlag.LOADING_SCREEN);
+            
+            window.ShowWindow();
+        }
+        
+        private void LoadTitleScreen(){
+            Initialize(GetSceneScopeByInt((int)_sceneScope));
+        }
+        
         public Enums.ESceneScope GetSceneScopeByInt(int scene_scope_int){
             if (Enum.IsDefined(typeof(Enums.ESceneScope), scene_scope_int))
             {
@@ -44,8 +71,9 @@ namespace KemiaSimulatorCore.Script.HUD{
 
             return Enums.ESceneScope.TITLE_SCREEN;
         }
-        
-        public void Initialize(Enums.ESceneScope scene_scope) =>
+
+        public void Initialize(Enums.ESceneScope scene_scope){
             _uiLoader.Load((int)scene_scope);
+        }
     }
 }
