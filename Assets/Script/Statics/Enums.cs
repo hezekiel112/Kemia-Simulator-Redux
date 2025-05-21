@@ -12,6 +12,10 @@
             
             OK_BTN_REDIRECT_TO_EXIT_GAME,
             EXIT_BTN_REDIRECT_TO_EXIT_GAME,
+            
+            LOADING_SCREEN_REDIRECT_TO_GAME,
+            LOADING_SCREEN_REDIRECT_TO_TITLE_SCREEN,
+
         }
         
         public enum EWindowType{

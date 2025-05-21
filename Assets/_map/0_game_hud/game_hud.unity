@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c0cd0d80f02407c888d16b275a093b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneScope: 0
+  _sceneScope: 1
   _uiLoader: {fileID: 966834223}
 --- !u!1 &193808718
 GameObject:
@@ -304,10 +304,10 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 123882438}
   - {fileID: 212708035}
   - {fileID: 554459447}
   - {fileID: 1177147323}
-  - {fileID: 123882438}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
