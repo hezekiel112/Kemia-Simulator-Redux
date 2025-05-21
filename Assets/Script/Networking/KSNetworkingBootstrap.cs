@@ -1,6 +1,8 @@
 using System;
 using System.Threading.Tasks;
+using KemiaSimulatorCore.Script.Networking.Authentication;
 using KemiaSimulatorCore.Script.Statics;
+using Unity.Services.Authentication;
 using Unity.Services.Core;
 using UnityEngine;
 
@@ -42,10 +44,10 @@ namespace KemiaSimulatorCore.Script.Networking
         private async void Start(){
             UnityServices.Initialized += OnServicesInitialized;
             UnityServices.InitializeFailed += OnServicesFailed;
+            
             try
             {
                 await StartUnityServices();
-                
             }
             catch(RequestFailedException e)
             {

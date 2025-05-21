@@ -107,17 +107,18 @@ namespace KemiaSimulatorCore.Script.HUD{
                                 {
                                     _okButton.onClick.RemoveAllListeners();
                                     _okButton.onClick.AddListener(window_login.ShowWindow);
+                                    _callbackBuffer.RemoveAt(i);
                                 }
                                 
                                 if (_exitButton)
                                 {
                                     _exitButton.onClick.RemoveAllListeners();
                                     _exitButton.onClick.AddListener(window_login.ShowWindow);
+                                    // _callbackBuffer.RemoveAt(i);
                                 }
                             }
                             
                             this.kslog(_callbackBuffer.Count.ToString());
-                            _callbackBuffer.RemoveAt(i);
                             break;
                     }
                 }

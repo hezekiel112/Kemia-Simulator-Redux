@@ -30,7 +30,7 @@ namespace KemiaSimulatorCore.Script.Networking.Authentication
         private void Start(){
             SetupAuthentificationListener();
         }
-
+        
         private void SetupAuthentificationListener(){
             AuthenticationService.Instance.Expired += OnConnectionExpired;
             AuthenticationService.Instance.SignedIn += OnSignedIn;
@@ -58,12 +58,12 @@ namespace KemiaSimulatorCore.Script.Networking.Authentication
             { 
                 
                 // ce player à déjà un compte existant — inutile de l'authentifier manuellement.
-                if (AuthenticationService.Instance.SessionTokenExists)
-                {
-                    SignInAnonymously();
-
-                    return;
-                }
+                // if (AuthenticationService.Instance.SessionTokenExists)
+                // {
+                //     SignInAnonymously();
+                // 
+                //     return;
+                // }
                 
                 if (username == string.Empty)
                 {
@@ -276,6 +276,10 @@ namespace KemiaSimulatorCore.Script.Networking.Authentication
         
         private void OnSignedIn(){
             print("signed in");
+            ShowWelcomeWindow();
+        }
+
+        private void ShowWelcomeWindow(){
             KSHUD.Instance.InitializeNewWindow(
                 "Kemia Simulator Redux " + GameManager.Instance.GameVersion.BuildVersion,
                 $"Bienvenue, {AuthenticationService.Instance.PlayerInfo.Username}",

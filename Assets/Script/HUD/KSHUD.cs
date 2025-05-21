@@ -42,7 +42,11 @@ namespace KemiaSimulatorCore.Script.HUD
         }
 
         private void Start(){
-            KSRuntime.HideAllWindow(KSRuntime.GetFirstWindowByType(Enums.EWindowType.LOGIN_MODAL).WindowID);
+            Invoke(nameof(ShowLoginWindow), .4f);
+        }
+
+        private void ShowLoginWindow(){
+            KSRuntime.GetFirstWindowByType(Enums.EWindowType.LOGIN_MODAL).ShowWindow();
         }
         
         /// <summary>

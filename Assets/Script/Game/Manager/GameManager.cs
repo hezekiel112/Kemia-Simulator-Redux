@@ -28,6 +28,12 @@ namespace KemiaSimulatorCore.Script.Game.Manager{
             GameVersion = KSRuntime.GetNewGameVersion();
             this.kslog($"GameVersion OK ({GameVersion.BuildVersion})");
             DontDestroyOnLoad(this);
+
+            Debug.developerConsoleEnabled = true;
+        }
+
+        private void Update(){
+            Debug.developerConsoleVisible = true;
         }
     }
 }
