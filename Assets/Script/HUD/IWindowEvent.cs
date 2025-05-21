@@ -46,6 +46,25 @@ namespace KemiaSimulatorCore.Script.HUD{
         /// Assigne un flag par défaut type <see cref="Enums.EWindowFlag.NONE"/>
         /// </summary>
         public void ResetFlag();
+
+        /// <summary>
+        /// Active ou désactive le bouton de la fenêtre de type 'OK'.
+        /// </summary>
+        /// <param name="is_ok_button_active">Est-ce que le bouton 'OK' est activé ?</param>
+        public void SetOkButtonPresence(bool is_ok_button_active);
+        
+        /// <summary>
+        /// Active ou désactive le bouton de la fenêtre de type 'EXIT'.
+        /// </summary>
+        /// <param name="is_exit_button_active">Est-ce que le bouton 'EXIT' est activé ?</param>
+        public void SetExitButtonPresence(bool is_exit_button_active);
+        
+        
+        /// <summary>
+        /// Active ou désactive le bouton de la fenêtre de type 'NO'.
+        /// </summary>
+        /// <param name="is_no_button_active">Est-ce que le bouton 'NO' est activé ?</param>
+        public void SetNoButtonPresence(bool is_no_button_active);
     }
     
     public partial interface IWindowEvent{

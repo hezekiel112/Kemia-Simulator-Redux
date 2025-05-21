@@ -149,6 +149,20 @@ namespace KemiaSimulatorCore.Script.HUD{
             Invoke(nameof(HideWindowDelayed), .4f);
         }
 
+        public void SetOkButtonPresence(bool is_ok_button_active){
+            _okButton.gameObject.SetActive(is_ok_button_active);
+        }
+        
+        
+        public void SetExitButtonPresence(bool is_exit_button_active){
+            _exitButton.gameObject.SetActive(is_exit_button_active);
+        }
+        
+        
+        public void SetNoButtonPresence(bool is_no_button_active){
+            _noButton.gameObject.SetActive(is_no_button_active);
+        }
+        
         private void HideWindowDelayed(){
             gameObject.SetActive(false);
         }
@@ -187,6 +201,12 @@ namespace KemiaSimulatorCore.Script.HUD{
             _isWindowOpen = true;
             
             OnWindowOpen();
+        }
+
+        public void RevertAllButtonsPresence(){
+            SetOkButtonPresence(true);
+            SetNoButtonPresence(true);
+            SetExitButtonPresence(true);
         }
         
         public void SetPersistantFlag(Enums.EWindowFlag new_flag){

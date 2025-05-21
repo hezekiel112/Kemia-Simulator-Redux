@@ -31,17 +31,20 @@ namespace KemiaSimulatorCore.Script.HUD{
         }
 
         private void Start(){
+            LoadTitleScreen();
             SceneManager.sceneLoaded += OnSceneLoaded;
-            
-            Invoke(nameof(LoadTitleScreen), .4f);
         }
 
-        private void ShowLoadingScreen(Scene scene){
+        private void ShowLoadingScreen(){
             var window = KSRuntime.GetFirstWindowByType(Enums.EWindowType.GENERIC_MODAL);
             
             window.SetTitle("Chargement ...");
             window.SetContent("Chargement en cours.\nVeuillez patienter.");
             window.SetPersistantFlag(Enums.EWindowFlag.LOADING_SCREEN);
+            
+            window.SetExitButtonPresence(false);
+            window.SetOkButtonPresence(false);
+            window.SetNoButtonPresence(false);
             
             window.ShowWindow();
         }
@@ -56,8 +59,8 @@ namespace KemiaSimulatorCore.Script.HUD{
         }
         
         private void LoadTitleScreen(){
-            ShowLoadingScreen(SceneManager.GetSceneByBuildIndex((int)_sceneScope));
-            Invoke(nameof(LoadSceneFromSceneScope), .5f);
+            Invoke(nameof(ShowLoadingScreen), 1f);
+            LoadSceneFromSceneScope();
         }
 
         private void LoadSceneFromSceneScope(){

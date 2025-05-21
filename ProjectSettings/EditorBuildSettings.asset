@@ -6,10 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_map/0_game_hud/game_hud.unity
+    path: Assets/Map/0_game_hud/game_hud.unity
     guid: 222616f2cccf78245a752232a3cf8444
   - enabled: 1
-    path: Assets/_map/1_title_screen/title_screen.unity
+    path: Assets/Map/1_title_screen/title_screen.unity
     guid: fa0a80791a5dc4e4db33eb253bcc155d
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 86030edc93108a342b3d0383fe1cc61a,
