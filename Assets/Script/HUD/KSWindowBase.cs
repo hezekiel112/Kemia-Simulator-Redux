@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using KemiaSimulatorCore.Script.Statics;
 using NaughtyAttributes;
 using TMPro;
+using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -163,8 +164,6 @@ namespace KemiaSimulatorCore.Script.HUD{
         }
         
         private void Start(){
-            KSWindowRegistry.Instance.AddWindowToRegistry(_windowId, this);
-            
             if (string.IsNullOrEmpty(WindowID))
             {
                 this.kslogwarn("id null pour la fenêtre : " + name);

@@ -138,13 +138,16 @@ namespace KemiaSimulatorCore.Script.Networking.Authentication
                 Enums.EWindowType.NETWORK_ERROR_MODAL, Enums.EWindowFlag.NETWORK_ERROR_2);
             
             // renew buffers
-            if (error_network_window.CallbacksBuffer.Count == 0)
+            if (error_network_window)
             {
-                error_network_window.SendCallbackBuffer(Enums.EWindowCallback.OK_BTN_REDIRECT_TO_LOGIN_MODAL);
-                error_network_window.SendCallbackBuffer(Enums.EWindowCallback.EXIT_BTN_REDIRECT_TO_EXIT_GAME);
-            }
+                if (error_network_window.CallbacksBuffer.Count == 0)
+                {
+                    error_network_window.SendCallbackBuffer(Enums.EWindowCallback.OK_BTN_REDIRECT_TO_LOGIN_MODAL);
+                    error_network_window.SendCallbackBuffer(Enums.EWindowCallback.EXIT_BTN_REDIRECT_TO_EXIT_GAME);
+                }
             
-            error_network_window.ShowWindow();
+                error_network_window.ShowWindow();
+            }
         }
         
         public static (string, int) GetExceptionRequest(AuthenticationException exception){
@@ -302,10 +305,13 @@ namespace KemiaSimulatorCore.Script.Networking.Authentication
         }
 
         private void ShowWelcomeWindow(){
-            KSHUD.Instance.InitializeNewWindow(
+            var welcome_window = KSHUD.Instance.InitializeNewWindow(
                 "Kemia Simulator Redux " + GameManager.Instance.GameVersion.BuildVersion,
                 $"Bienvenue, {AuthenticationService.Instance.PlayerInfo.Username}",
-                Enums.EWindowType.GENERIC_MODAL, Enums.EWindowFlag.NONE_0).ShowWindow();
+                Enums.EWindowType.GENERIC_MODAL, Enums.EWindowFlag.NONE_0);
+
+            welcome_window.SendCallbackBuffer(Enums.EWindowCallback.EXIT_BTN_REDIRECT_TO_LOGIN_MODAL);
+            welcome_window.ShowWindow();
         }
         
         private void OnSignedOut(){

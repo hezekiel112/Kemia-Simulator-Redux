@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace KemiaSimulatorCore.Script.HUD{
     public class KSWindowRegistry : MonoBehaviour{
-        private Dictionary<string, KSWindowBase> _windowsMap = new Dictionary<string, KSWindowBase>();
+        [SerializeField] private List<KSWindowBase> _windows = new List<KSWindowBase>();
+        
+        private Dictionary<string, KSWindowBase> _windowsMap;
 
         public Dictionary<string, KSWindowBase> WindowsMap
         {
@@ -18,21 +19,17 @@ namespace KemiaSimulatorCore.Script.HUD{
         }
 
         private void Awake(){
+            _windowsMap = new Dictionary<string, KSWindowBase>();
+
+            foreach (var window in _windows)
+            {
+                _windowsMap.Add(window.WindowID, window);
+            }
+            
             if (!Instance || Instance)
             {
                 Instance = this;
             }
-        }
-
-        public void AddWindowToRegistry(string window_id, KSWindowBase instance){
-            print("added" + instance.WindowType);
-            
-            _windowsMap.TryAdd(window_id, instance);
-            print(_windowsMap.Count);
-        }
-
-        public void RemoveWindowFromRegistry(string window_id){
-            _windowsMap.Remove(window_id);
         }
     }
 }

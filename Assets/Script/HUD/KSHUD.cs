@@ -29,7 +29,21 @@ namespace KemiaSimulatorCore.Script.HUD
             get => _windowPrefab;
         }
 
+        public GameObject WindowLoginPrefab
+        {
+            get => _windowLoginPrefab;
+        }
 
+        public GameObject WindowErrorPrefab
+        {
+            get => _windowErrorPrefab;
+        }
+
+        public GameObject Canvas
+        {
+            get => _canvas;
+        }
+        
         private GameObject _windowTempInstance;
         private Button _windowTempCloseButton;
         private string _windowTempTitle, _windowTempContent;
@@ -52,10 +66,11 @@ namespace KemiaSimulatorCore.Script.HUD
             KSRuntime.HideAllWindow();
 
             var pooled_window = KSRuntime.GetFirstWindowByType(windowType);
-            pooled_window.SetPersistantFlag(flag);
             
             if (pooled_window)
             {
+                pooled_window.SetPersistantFlag(flag);
+                
                 switch (windowType)
                 {
                     case Enums.EWindowType.NETWORK_ERROR_MODAL:

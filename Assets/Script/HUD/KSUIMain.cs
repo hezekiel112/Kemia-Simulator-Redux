@@ -37,28 +37,35 @@ namespace KemiaSimulatorCore.Script.HUD{
 
         private void ShowLoadingScreen(){
             var window = KSRuntime.GetFirstWindowByType(Enums.EWindowType.GENERIC_MODAL);
+
+            if (window)
+            {
+                window.SetTitle("Chargement ...");
+                window.SetContent("Chargement en cours.\nVeuillez patienter.");
+                window.SetPersistantFlag(Enums.EWindowFlag.LOADING_SCREEN_1);
             
-            window.SetTitle("Chargement ...");
-            window.SetContent("Chargement en cours.\nVeuillez patienter.");
-            window.SetPersistantFlag(Enums.EWindowFlag.LOADING_SCREEN_1);
+                window.SetExitButtonPresence(false);
+                window.SetOkButtonPresence(false);
+                window.SetNoButtonPresence(false);
             
-            window.SetExitButtonPresence(false);
-            window.SetOkButtonPresence(false);
-            window.SetNoButtonPresence(false);
-            
-            window.ShowWindow();
+                window.ShowWindow();
+            }
         }
         
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode){
             var window = KSRuntime.GetFirstWindowByType(Enums.EWindowType.GENERIC_MODAL);
-            
-           if (window.WindowFlag == Enums.EWindowFlag.LOADING_SCREEN_1)
-               window.ResetFlag();
-           
-           window.HideWindow();
+
+            if (window)
+            {
+                if (window.WindowFlag == Enums.EWindowFlag.LOADING_SCREEN_1)
+                    window.ResetFlag();
+                
+                window.HideWindow();
+            }
         }
         
         private void LoadTitleScreen(){
+            ShowLoadingScreen();
             LoadSceneFromSceneScope();
         }
 
