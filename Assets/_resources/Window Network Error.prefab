@@ -521,8 +521,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80e7dd4e3b2d1f44f96dc0fb57e810d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _windowId: 
-  _windowType: 0
+  _windowId: kswin_network_error_modal_704
+  _windowType: 2
   _exitButton: {fileID: 8109432740743902797}
   _okButton: {fileID: 1753247642299738750}
   _noButton: {fileID: 0}

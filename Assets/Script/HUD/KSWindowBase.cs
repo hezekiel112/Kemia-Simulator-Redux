@@ -20,7 +20,7 @@ namespace KemiaSimulatorCore.Script.HUD{
         
         [SerializeField]  private Button _exitButton;
 
-        [SerializeField] private Button _okButton, _noButton;
+        [SerializeField] protected Button _okButton, _noButton;
         [SerializeField] private TextMeshProUGUI _titleText, _contentText;
         
         [Header("Seulement pour les types window login modal :")]
@@ -28,7 +28,12 @@ namespace KemiaSimulatorCore.Script.HUD{
         [SerializeField, ShowIf("_windowType", Enums.EWindowType.LOGIN_MODAL)] private TMP_InputField _passwordInputField;
 
         private bool _isWindowOpen = false;
+        [SerializeField] private List<Enums.EWindowCallback> _callbackBuffer = new List<Enums.EWindowCallback>();
 
+        public List<Enums.EWindowCallback> CallbacksBuffer
+        {
+            get => _callbackBuffer;
+        }
         public string WindowID
         {
             get => _windowId;
@@ -72,9 +77,6 @@ namespace KemiaSimulatorCore.Script.HUD{
         public virtual void OnNoButtonClicked(){
             OnNoButtonCallback?.Invoke();
         }
-
-        private List<Enums.EWindowCallback> _callbackBuffer = new List<Enums.EWindowCallback>();
-        
         
         /// <summary>
         /// Envoyé à la fenêtre une surcharge en mémoire tampon d'un événement lié à un bouton.
@@ -127,6 +129,15 @@ namespace KemiaSimulatorCore.Script.HUD{
         }
         
         public void HideWindow(){
+            if (_okButton)
+                _okButton.onClick.RemoveAllListeners();
+
+            if (_exitButton)
+                _exitButton.onClick.RemoveAllListeners();
+
+            if (_noButton)
+                _noButton.onClick.RemoveAllListeners();
+            
             _isWindowOpen = false;
             Invoke(nameof(HideWindowDelayed), .4f);
         }
@@ -134,8 +145,10 @@ namespace KemiaSimulatorCore.Script.HUD{
         private void HideWindowDelayed(){
             gameObject.SetActive(false);
         }
-        
+
         private void Start(){
+            KSWindowRegistry.Instance.AddWindowToRegistry(_windowId, this);
+            
             if (string.IsNullOrEmpty(WindowID))
             {
                 this.kslogwarn("id null pour la fenêtre : " + name);
@@ -159,27 +172,7 @@ namespace KemiaSimulatorCore.Script.HUD{
         protected virtual void OnWindowOpen() {}
         
         public void ShowWindow(){
-            if (!KSRuntime.GetWindowFromRegistry(_windowId))
-            {
-                if (string.IsNullOrEmpty(WindowID))
-                {
-                    this.kslogwarn("id null pour la fenêtre : " + name);
-                    this.kslogwarn("création d'un id temporaire ... ");
-                
-                    GenerateNewWindowID();
-                }
-                
-                KSWindowRegistry.Instance.AddWindowToRegistry(_windowId, this);
-            }
-            
-            KSRuntime.HideAllWindow();
-            
-            if (!_exitButton || !_okButton || !_noButton || !_titleText || !_contentText)
-                throw new NullReferenceException($"{this} : missconfig!");
-            
-            _exitButton.onClick.AddListener(OnExitButtonClicked);
-            _okButton.onClick.AddListener(OnOkButtonClicked);
-            _noButton.onClick.AddListener(OnNoButtonClicked);
+            KSRuntime.HideAllWindow(exceptThisWindow: _windowId);
             
             gameObject.SetActive(true);
             _isWindowOpen = true;

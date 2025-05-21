@@ -8,6 +8,5 @@ namespace KemiaSimulatorCore.Script.HUD
     ///     Ce script gére une fenêtre lambda (affichage de text avec un titre de fenêtre)
     /// </summary>
     public class KSWindow : KSWindowBase {
-       
     }
 }

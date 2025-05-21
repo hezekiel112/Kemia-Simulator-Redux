@@ -56,14 +56,14 @@ namespace KemiaSimulatorCore.Script.Networking.Authentication
         public async void SignInWithLogin(string username, string password){
             if (IsServerReady())
             { 
-                /*
-                 // ce player à déjà un compte existant — inutile de l'authentifier manuellement.
+                
+                // ce player à déjà un compte existant — inutile de l'authentifier manuellement.
                 if (AuthenticationService.Instance.SessionTokenExists)
                 {
                     SignInAnonymously();
 
                     return;
-                }*/
+                }
                 
                 if (username == string.Empty)
                 {
@@ -74,26 +74,21 @@ namespace KemiaSimulatorCore.Script.Networking.Authentication
                 {
                     await AuthenticationService.Instance.SignUpWithUsernamePasswordAsync(username, password);
                 }
-                catch (AuthenticationException ex)
+                catch (Exception ex) when (ex is AuthenticationException or RequestFailedException)
                 {
-
-                    var error_network_window = KSHUD.Instance.InitializeNewWindow("Erreur Connection",
-                        $"Impossible d'aboutir la requête souhaitée.\n{ex.Message}", Enums.EWindowType.NETWORK_ERROR_MODAL);
+                    var request_failed = (RequestFailedException)ex;
                     
+                    var error_network_window = KSHUD.Instance.InitializeNewWindow(
+                        "Erreur Connection",
+                        $"Impossible d'aboutir la requête souhaitée.\n{GetExceptionRequest(request_failed).Item1} \n Code d'Erreur: {GetExceptionRequest(request_failed).Item2}", 
+                        Enums.EWindowType.NETWORK_ERROR_MODAL);
                     
-                    error_network_window.SendCallbackBuffer(Enums.EWindowCallback.OK_BTN_REDIRECT_TO_LOGIN_MODAL);
-                    error_network_window.SendCallbackBuffer(Enums.EWindowCallback.EXIT_BTN_REDIRECT_TO_EXIT_GAME);
-                    
-                    error_network_window.ShowWindow();
-                }
-                catch (RequestFailedException ex)
-                {
-                    var error_network_window = KSHUD.Instance.InitializeNewWindow("Erreur Connection",
-                        $"Impossible d'aboutir la requête souhaitée.\n{GetExceptionRequest(ex).Item1} \n Erreur Code: {GetExceptionRequest(ex).Item2}", Enums.EWindowType.NETWORK_ERROR_MODAL);
-                    
-                    
-                    error_network_window.SendCallbackBuffer(Enums.EWindowCallback.OK_BTN_REDIRECT_TO_LOGIN_MODAL);
-                    error_network_window.SendCallbackBuffer(Enums.EWindowCallback.EXIT_BTN_REDIRECT_TO_EXIT_GAME);
+                    // renew buffers
+                    if (error_network_window.CallbacksBuffer.Count == 0)
+                    {
+                        error_network_window.SendCallbackBuffer(Enums.EWindowCallback.OK_BTN_REDIRECT_TO_LOGIN_MODAL);
+                        error_network_window.SendCallbackBuffer(Enums.EWindowCallback.EXIT_BTN_REDIRECT_TO_EXIT_GAME);
+                    }
                     
                     error_network_window.ShowWindow();
                 }
@@ -119,24 +114,16 @@ namespace KemiaSimulatorCore.Script.Networking.Authentication
                         $"connexion anonyme réussie signed-in ({AuthenticationService.Instance.IsSignedIn})({AuthenticationService.Instance.PlayerId})");
             }
 
-            catch (AuthenticationException ex)
+            catch (Exception ex) when (ex is AuthenticationException or RequestFailedException)
             {
-                var (error_msg, error_code) = GetExceptionRequest(ex);
+                AuthenticationException request_failed_exception = ex as AuthenticationException;
+                
+                var (error_msg, error_code) = GetExceptionRequest(request_failed_exception);
                 
                 KSHUD.Instance.InitializeNewWindow(
                     "Erreur de connection.", 
                     $"Impossible de se connecté au serveur.\ncode d'erreur: {error_code}\n'{error_msg}'", 
-                    Enums.EWindowType.GENERIC_MODAL);
-            }
-            
-            catch (RequestFailedException ex)
-            {
-                var (error_msg, error_code) = GetExceptionRequest(ex);
-                
-                KSHUD.Instance.InitializeNewWindow(
-                    "Erreur de connection.", 
-                    $"Impossible de se connecté au serveur.\ncode d'erreur: {error_code}\n'{error_msg}'", 
-                    Enums.EWindowType.GENERIC_MODAL);
+                    Enums.EWindowType.NETWORK_ERROR_MODAL);
             }
         }
 
@@ -164,7 +151,7 @@ namespace KemiaSimulatorCore.Script.Networking.Authentication
                 errorMessage = "Connection non aboutie.";
             }
 
-            if (exception.ErrorCode == CommonErrorCodes.InvalidRequest) ;
+            if (exception.ErrorCode == CommonErrorCodes.InvalidRequest)
             {
                 errorMessage = "Requête web mal formée.";
             }
@@ -288,10 +275,11 @@ namespace KemiaSimulatorCore.Script.Networking.Authentication
         }
         
         private void OnSignedIn(){
+            print("signed in");
             KSHUD.Instance.InitializeNewWindow(
-                "Kemia Simulator Redux " + GameManager.Instance.GameVersion,
-                $"Bienvenue, {AuthenticationService.Instance.PlayerName}",
-                Enums.EWindowType.GENERIC_MODAL);
+                "Kemia Simulator Redux " + GameManager.Instance.GameVersion.BuildVersion,
+                $"Bienvenue, {AuthenticationService.Instance.PlayerInfo.Username}",
+                Enums.EWindowType.GENERIC_MODAL).ShowWindow();
         }
         
         private void OnSignedOut(){

@@ -9,14 +9,19 @@ namespace KemiaSimulatorCore.Script.HUD{
     /// </summary>
     public class KSWindowLogin : KSWindowBase {
         protected override void OnWindowOpen(){
-            OnOkButtonCallback += Sign;
+            if (OnOkButtonCallback == null)
+                OnOkButtonCallback = Sign;
+            
+            _okButton.onClick.RemoveAllListeners();
+            _okButton.onClick.AddListener(OnOkButtonCallback.Invoke);
         }
-
+        
         private void OnDisable(){
             OnOkButtonCallback -= Sign;
         }
         
         private void Sign(){
+            print("sign");
             KSAuthentificationHandler.Instance.
                 SignInWithLogin(GetUsernameFieldContent(), GetPasswordFieldContent());
         }

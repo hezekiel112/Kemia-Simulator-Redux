@@ -643,82 +643,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80e7dd4e3b2d1f44f96dc0fb57e810d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _windowId: kswin_generic_modal_585
+  _windowType: 0
   _exitButton: {fileID: 8109432740743902797}
   _okButton: {fileID: 1753247642299738750}
   _noButton: {fileID: 2758082599134588563}
   _titleText: {fileID: 2370491248866788123}
   _contentText: {fileID: 6862628856206763707}
-  _onOkButton:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8664988338128210059}
-        m_TargetAssemblyTypeName: KemiaSimulatorCore.Script.HUD.KSWindow, KSCore
-        m_MethodName: SendCallback
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: authentification
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onNoButton:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2916191659173402755}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: PlayOneShot
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: 19b05ea55273549f095e571d853f1d52,
-            type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 8664988338128210059}
-        m_TargetAssemblyTypeName: KemiaSimulatorCore.Script.HUD.KSWindow, KSCore
-        m_MethodName: HideWindow
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onExitButton:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2916191659173402755}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: PlayOneShot
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: 19b05ea55273549f095e571d853f1d52,
-            type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 8664988338128210059}
-        m_TargetAssemblyTypeName: KemiaSimulatorCore.Script.HUD.KSWindow, KSCore
-        m_MethodName: HideWindow
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _usernameInputField: {fileID: 0}
+  _passwordInputField: {fileID: 0}
 --- !u!82 &2916191659173402755
 AudioSource:
   m_ObjectHideFlags: 0

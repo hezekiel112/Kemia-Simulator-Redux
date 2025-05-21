@@ -21,6 +21,9 @@ namespace KemiaSimulatorCore.Script.Statics {
             return true;
         }
 
+        /// <summary>
+        ///     Fait disparaitre toutes les fenêtres.
+        /// </summary>
         public static void HideAllWindow(){
             if (KSWindowRegistry.Instance.WindowsMap.Count == 0)
                 return;
@@ -29,6 +32,24 @@ namespace KemiaSimulatorCore.Script.Statics {
             {
                 if (window.Value.IsWindowOpen)
                     window.Value.HideWindow();
+            }
+        }
+        
+        /// <summary>
+        ///     Fait disparaitre toutes les fenêtres.
+        /// </summary>
+        /// <param name="exceptThisWindow">Fait disparaitre toutes les fenêtres excepter celle-ci.</param>
+        public static void HideAllWindow(string exceptThisWindow){
+            if (KSWindowRegistry.Instance.WindowsMap.Count == 0)
+                return;
+            
+            foreach (var window in KSWindowRegistry.Instance.WindowsMap)
+            {
+                if (window.Value.WindowID != exceptThisWindow)
+                {
+                    if (window.Value.IsWindowOpen)
+                        window.Value.HideWindow();
+                }
             }
         }
         
@@ -53,7 +74,6 @@ namespace KemiaSimulatorCore.Script.Statics {
                     return window;
             }
             
-            KSWindowRegistry.Instance.kslogerror($"aucune window de type {window_type} trouvé");
             return null;
         }
         

@@ -42,7 +42,7 @@ namespace KemiaSimulatorCore.Script.HUD
         }
 
         private void Start(){
-            InitializeNewWindow("Inscription Requise Pour Kemia Simulator", string.Empty, Enums.EWindowType.LOGIN_MODAL);
+            KSRuntime.HideAllWindow(KSRuntime.GetFirstWindowByType(Enums.EWindowType.LOGIN_MODAL).WindowID);
         }
         
         /// <summary>
@@ -54,18 +54,32 @@ namespace KemiaSimulatorCore.Script.HUD
         /// <param name="setContentForLoginModal">Utiliser la variable content pour une fenêtre type <see cref="Enums.EWindowType.LOGIN_MODAL"/> ?</param>
         public KSWindowBase InitializeNewWindow(string title, string content, Enums.EWindowType windowType, bool setContentForLoginModal = false){
             KSRuntime.HideAllWindow();
-            
-            switch (windowType)
-            {
-                case Enums.EWindowType.NETWORK_ERROR_MODAL:
-                case Enums.EWindowType.GENERIC_MODAL:
-                     return InitializeGenericWindow(title, content);
 
-                case Enums.EWindowType.LOGIN_MODAL:
-                    if (setContentForLoginModal)
-                        return InitializeLoginWindow(title, content);
-                   
-                    return InitializeLoginWindow(title);
+            var pooled_window = KSRuntime.GetFirstWindowByType(windowType);
+
+            if (pooled_window)
+            {
+                switch (windowType)
+                {
+                    case Enums.EWindowType.NETWORK_ERROR_MODAL:
+                    case Enums.EWindowType.GENERIC_MODAL:
+                        pooled_window.SetTitle(title);
+                        pooled_window.SetContent(content);
+                        
+                        return pooled_window;
+
+                    case Enums.EWindowType.LOGIN_MODAL:
+                        if (setContentForLoginModal)
+                        {
+                            pooled_window.SetTitle(title);
+                            pooled_window.SetContent(content);
+
+                            return pooled_window;
+                        }
+                        
+                        pooled_window.SetTitle(title);
+                        return pooled_window;
+                }
             }
 
             this.kslogerror("aucune window de ce type ne peux être créée. " + windowType);

@@ -25,6 +25,8 @@ namespace KemiaSimulatorCore.Script.HUD{
         }
 
         public void AddWindowToRegistry(string window_id, KSWindowBase instance){
+            print("added" + instance.WindowType);
+            
             _windowsMap.TryAdd(window_id, instance);
         }
 

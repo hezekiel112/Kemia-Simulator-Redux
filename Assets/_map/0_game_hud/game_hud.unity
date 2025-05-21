@@ -515,6 +515,7 @@ GameObject:
   - component: {fileID: 966834221}
   - component: {fileID: 966834224}
   - component: {fileID: 966834223}
+  - component: {fileID: 966834225}
   m_Layer: 0
   m_Name: _game
   m_TagString: Untagged
@@ -578,7 +579,21 @@ MonoBehaviour:
     type: 3}
   _windowLoginPrefab: {fileID: 2976740101895971466, guid: c921e8e1ba29ca64580bb89011ab693c,
     type: 3}
+  _windowErrorPrefab: {fileID: 2976740101895971466, guid: 57e5dccbbfb68564a99b82e0b2889ee7,
+    type: 3}
   _canvas: {fileID: 409546338}
+--- !u!114 &966834225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966834220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fdc0c1e374744f7aeb556c43cc4f0b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1111538741
 GameObject:
   m_ObjectHideFlags: 0
